@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-color-tinta: #1a1a1a;
+  --color-color-papel: #f4eee0;
+  --color-color-sakura: #c95b64;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @apply bg-color-papel;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
