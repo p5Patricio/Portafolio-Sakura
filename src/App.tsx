@@ -1,6 +1,7 @@
 import './index.css'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
+import SobreMi from './components/SobreMi'
 import SakuraPetals from './components/SakuraPetals'
 import { projectsData } from './data/projects'
 import type { Project } from './data/projects'
@@ -38,6 +39,7 @@ function App() {
       <SakuraPetals />
       <Navbar />
       <Hero />
+      <SobreMi />
       <section id="proyectos" className="bg-color-papel px-6 py-16 md:px-12 lg:px-24">
         <h2 className="text-color-tinta text-2xl font-medium tracking-widest mb-10 uppercase">
           Proyectos
