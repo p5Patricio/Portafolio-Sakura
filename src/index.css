@@ -1,11 +1,18 @@
 @import "tailwindcss";
-@import "@fontsource/nanum-brush-script/400.css";
+
+@font-face {
+  font-family: "Edo SZ";
+  src: url("./assets/fonts/edosz.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --color-color-tinta: #1a1a1a;
   --color-color-papel: #f4eee0;
   --color-color-sakura: #c95b64;
-  --font-brush: "Nanum Brush Script", cursive;
+  --font-brush: "Edo SZ", "Brush Script MT", cursive;
 }
 
 *,
