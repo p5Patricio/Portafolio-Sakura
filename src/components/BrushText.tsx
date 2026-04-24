@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import InkSplashes from './InkSplashes'
 
 const words = [
   { text: 'Soy',       className: 'text-5xl md:text-7xl lg:text-8xl' },
@@ -10,8 +9,7 @@ const words = [
 
 function BrushText() {
   return (
-    <div className="relative flex flex-col items-center gap-1 px-6">
-      <InkSplashes />
+    <div className="flex flex-col items-center gap-1 px-6">
       {words.map(({ text, className }, i) => (
         <motion.span
           key={text}
