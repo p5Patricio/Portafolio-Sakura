@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import "@fontsource/nanum-brush-script/400.css";
 
 @theme {
   --color-color-tinta: #1a1a1a;
   --color-color-papel: #f4eee0;
   --color-color-sakura: #c95b64;
+  --font-brush: "Nanum Brush Script", cursive;
 }
 
 *,
@@ -20,4 +22,38 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(40px, 110vh, 0) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.sakura-petal {
+  position: absolute;
+  top: 0;
+  background: radial-gradient(ellipse at 30% 30%, #f5cfd1 0%, #e8a4aa 55%, #c95b64 100%);
+  border-radius: 150% 0 150% 0;
+  animation-name: sakura-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sakura-petal {
+    display: none;
+  }
 }

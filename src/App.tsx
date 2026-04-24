@@ -1,5 +1,6 @@
 import './index.css'
 import Hero from './components/Hero'
+import SakuraPetals from './components/SakuraPetals'
 import { projectsData } from './data/projects'
 import type { Project } from './data/projects'
 
@@ -33,6 +34,7 @@ function ProjectCard({ title, description, technologies, githubUrl }: Project) {
 function App() {
   return (
     <main>
+      <SakuraPetals />
       <Hero />
       <section className="bg-color-papel px-6 py-16 md:px-12 lg:px-24">
         <h2 className="text-color-tinta text-2xl font-medium tracking-widest mb-10 uppercase">
