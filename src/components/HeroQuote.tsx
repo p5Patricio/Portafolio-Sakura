@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion'
 import SakuraIcon from './SakuraIcon'
+import { useLanguage } from '../context/LanguageContext'
 
 const QUOTE_DELAY = 2.4
 
 function HeroQuote() {
+  const { t } = useLanguage()
+
   return (
     <motion.div
       className="flex flex-col items-center gap-3 mt-10"
@@ -14,9 +17,9 @@ function HeroQuote() {
       <div className="flex items-center gap-4 md:gap-6">
         <span className="h-px w-10 md:w-16 bg-color-sakura/70" />
         <p className="text-[0.65rem] md:text-xs text-color-tinta/80 uppercase tracking-[0.25em] text-center leading-relaxed">
-          Hay que dar un paso a la vez,
+          {t.hero.quoteLine1}
           <br />
-          solo uno a la vez
+          {t.hero.quoteLine2}
         </p>
         <span className="h-px w-10 md:w-16 bg-color-sakura/70" />
       </div>

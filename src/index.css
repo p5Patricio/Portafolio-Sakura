@@ -15,16 +15,23 @@
   --font-brush: "Edo SZ", "Brush Script MT", cursive;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Tailwind v4 ships utilities inside @layer utilities. Unlayered rules win
+   the cascade over layered ones, so this reset MUST live inside @layer base
+   — otherwise it nukes every .px-*, .py-*, .m-*, etc. on the page. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  /* Account for the fixed floating navbar (top-7 + capsule height ~ 80px). */
+  scroll-padding-top: 6rem;
 }
 
 body {

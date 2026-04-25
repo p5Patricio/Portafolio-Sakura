@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Menu } from 'lucide-react'
 import SakuraStamp from './SakuraStamp'
+import LanguageSelector from './LanguageSelector'
+import { useLanguage } from '../context/LanguageContext'
 
-const links = [
-  { href: '#inicio',      label: 'Inicio' },
-  { href: '#sobre-mi',    label: 'Sobre mí' },
-  { href: '#proyectos',   label: 'Proyectos' },
-  { href: '#habilidades', label: 'Habilidades' },
-  { href: '#experiencia', label: 'Experiencia' },
-  { href: '#contacto',    label: 'Contacto' },
-]
+const linkDefs = [
+  { id: 'inicio',      href: '#inicio',      labelKey: 'inicio' },
+  { id: 'sobre-mi',    href: '#sobre-mi',    labelKey: 'sobreMi' },
+  { id: 'proyectos',   href: '#proyectos',   labelKey: 'proyectos' },
+  { id: 'experiencia', href: '#experiencia', labelKey: 'experiencia' },
+  { id: 'habilidades', href: '#habilidades', labelKey: 'habilidades' },
+  { id: 'contacto',    href: '#contacto',    labelKey: 'contacto' },
+] as const
 
 function useActiveSection(): string {
   const [active, setActive] = useState<string>('inicio')
 
   useEffect(() => {
-    const sectionIds = links.map((l) => l.href.slice(1))
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
+    const sections = linkDefs
+      .map((l) => document.getElementById(l.id))
       .filter((el): el is HTMLElement => el !== null)
 
     if (sections.length === 0) return
@@ -42,65 +42,89 @@ function useActiveSection(): string {
 
 function Navbar() {
   const active = useActiveSection()
+  const { t } = useLanguage()
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-40 hidden lg:flex items-center justify-between px-8 xl:px-12 py-5"
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-    >
+    <>
+      {/* ---------- Desktop / large screens ---------- */}
+      {/* Three floating glass elements: brand (left), links capsule (center), language selector (right) */}
+
       {/* Brand */}
-      <a href="#inicio" className="flex items-center gap-3 group">
-        <SakuraStamp className="w-14 h-14" />
+      <motion.a
+        href="#inicio"
+        className="hidden lg:flex fixed top-7 left-8 xl:left-12 z-40 items-center gap-3 group rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)] pl-2 pr-5 py-1.5"
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+        aria-label={t.brand.title}
+      >
+        <SakuraStamp className="w-11 h-11 transition-transform duration-300 group-hover:scale-105" />
         <div className="leading-tight">
-          <p className="font-bold text-color-tinta tracking-[0.2em] text-base">
-            PORTAFOLIO
+          <p className="font-bold text-color-tinta tracking-[0.2em] text-sm">
+            {t.brand.title}
           </p>
-          <p className="text-xs text-color-tinta/60 tracking-wide">
-            Ingeniero de Software
+          <p className="text-[0.65rem] text-color-tinta/60 tracking-wide">
+            {t.brand.subtitle}
           </p>
         </div>
-      </a>
+      </motion.a>
 
-      {/* Links */}
-      <ul className="flex items-center gap-8 xl:gap-10">
-        {links.map(({ href, label }) => {
-          const id = href.slice(1)
-          const isActive = active === id
-          return (
-            <li key={href} className="relative">
-              <a
-                href={href}
-                className={`text-sm tracking-[0.2em] uppercase transition-colors ${
-                  isActive
-                    ? 'text-color-tinta'
-                    : 'text-color-tinta/75 hover:text-color-tinta'
-                }`}
-              >
-                {label}
-              </a>
-              {isActive && (
-                <motion.span
-                  layoutId="nav-underline"
-                  className="absolute -bottom-2 left-0 right-0 h-[2px] bg-color-sakura"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
-            </li>
-          )
-        })}
-      </ul>
-
-      {/* Menu icon button */}
-      <button
-        type="button"
-        aria-label="Abrir menú"
-        className="w-14 h-14 rounded-full bg-color-tinta flex items-center justify-center hover:bg-color-tinta/90 transition-colors shadow-[0_4px_16px_-4px_rgba(26,26,26,0.4)]"
+      {/* Center nav links capsule */}
+      <motion.nav
+        className="hidden lg:block fixed top-7 left-1/2 -translate-x-1/2 z-40"
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+        aria-label="Primary"
       >
-        <Menu className="w-6 h-6 text-color-papel" strokeWidth={2} />
-      </button>
-    </motion.nav>
+        <ul className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]">
+          {linkDefs.map(({ id, href, labelKey }) => {
+            const isActive = active === id
+            return (
+              <li key={id} className="relative">
+                <a
+                  href={href}
+                  className={`relative block whitespace-nowrap px-3.5 xl:px-4 py-2 text-[0.7rem] xl:text-[0.75rem] tracking-[0.2em] uppercase font-semibold rounded-full transition-colors ${
+                    isActive
+                      ? 'text-color-papel'
+                      : 'text-color-tinta/70 hover:text-color-tinta'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-color-tinta shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{t.nav[labelKey]}</span>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </motion.nav>
+
+      {/* Language selector — right floating */}
+      <motion.div
+        className="hidden lg:block fixed top-7 right-8 xl:right-12 z-40"
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+      >
+        <LanguageSelector size="lg" layoutKey="lang-pill-desktop" />
+      </motion.div>
+
+      {/* ---------- Mobile / tablet language selector (top-right) ---------- */}
+      <motion.div
+        className="fixed top-6 right-6 md:top-7 md:right-8 z-40 lg:hidden"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+      >
+        <LanguageSelector size="md" layoutKey="lang-pill-mobile" />
+      </motion.div>
+    </>
   )
 }
 

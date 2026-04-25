@@ -1,19 +1,23 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
 
-const words = [
-  { text: 'Soy',       className: 'text-5xl md:text-7xl lg:text-8xl' },
-  { text: 'Ingeniero', className: 'text-7xl md:text-9xl lg:text-[11rem]' },
-  { text: 'de',        className: 'text-4xl md:text-5xl lg:text-6xl' },
-  { text: 'Software',  className: 'text-7xl md:text-9xl lg:text-[11rem]' },
-]
+const sizeMap = {
+  xs: 'text-4xl md:text-5xl lg:text-6xl',
+  sm: 'text-5xl md:text-7xl lg:text-8xl',
+  lg: 'text-6xl md:text-8xl lg:text-[9rem]',
+  xl: 'text-7xl md:text-9xl lg:text-[11rem]',
+} as const
 
 function BrushText() {
+  const { t, lang } = useLanguage()
+
   return (
     <div className="flex flex-col items-center gap-1 px-6">
-      {words.map(({ text, className }, i) => (
+      {t.hero.words.map(({ text, size }, i) => (
         <motion.span
-          key={text}
-          className={`font-brush text-color-tinta uppercase leading-[0.9] block ${className}`}
+          // key includes lang so the animation re-plays on language swap
+          key={`${lang}-${i}-${text}`}
+          className={`font-brush text-color-tinta uppercase leading-[0.9] block ${sizeMap[size]}`}
           initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }}
           animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }}
           transition={{
