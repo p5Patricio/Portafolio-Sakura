@@ -18,12 +18,15 @@ type NavItem = {
   labelKey: keyof ReturnType<typeof useLanguage>['t']['nav']
 }
 
+// Order MUST mirror HomePage's section order so that the IntersectionObserver
+// active state lines up with what the user sees on screen.
+//   Inicio → Sobre mí → Experiencia → Proyectos → Habilidades → Contacto
 const items: NavItem[] = [
   { id: 'inicio',      href: '#inicio',      icon: Home,       labelKey: 'inicio' },
   { id: 'sobre-mi',    href: '#sobre-mi',    icon: User,       labelKey: 'sobreMi' },
+  { id: 'experiencia', href: '#experiencia', icon: Briefcase,  labelKey: 'experiencia' },
   { id: 'proyectos',   href: '#proyectos',   icon: FolderGit2, labelKey: 'proyectos' },
   { id: 'habilidades', href: '#habilidades', icon: Sparkles,   labelKey: 'habilidades' },
-  { id: 'experiencia', href: '#experiencia', icon: Briefcase,  labelKey: 'experiencia' },
   { id: 'contacto',    href: '#contacto',    icon: Mail,       labelKey: 'contacto' },
 ]
 

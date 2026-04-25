@@ -28,10 +28,11 @@ const SIZE_STYLES: Record<Size, {
     icon:      'w-4 h-4 mx-2',
   },
   lg: {
-    container: 'p-2 gap-0',
-    button:    'px-6 py-2.5',
+    // Force the same total height (h-12 = 48px) as the brand and nav capsules.
+    container: 'h-12 px-2 gap-0',
+    button:    'px-5 py-1.5',
     text:      'text-sm tracking-[0.35em]',
-    icon:      'w-4 h-4 ml-3 mr-1',
+    icon:      'w-4 h-4 ml-2 mr-1',
   },
 }
 

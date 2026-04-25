@@ -4,8 +4,6 @@ type Word = { text: string; size: 'xs' | 'sm' | 'lg' | 'xl' }
 
 type Value = { title: string; description: string }
 
-type ProjectItem = { title: string; subtitle: string; description: string }
-
 type ExperienceItem = {
   period: string
   title: string
@@ -44,7 +42,8 @@ type Dict = {
     stamp: string
     intro: string
     viewProject: string
-    items: ProjectItem[]
+    /** CTA at the bottom of the home Proyectos section that links to /galeria. */
+    viewAll: string
   }
   experiencia: {
     title: string
@@ -52,6 +51,19 @@ type Dict = {
     intro: string
     placeholderImage: string
     items: ExperienceItem[]
+  }
+  habilidades: {
+    title: string
+    stamp: string
+    intro: string
+  }
+  galeria: {
+    title: string
+    stamp: string
+    intro: string
+    backHome: string
+    /** Section header for each year group on the gallery page. */
+    yearLabel: string
   }
   contacto: {
     title: string
@@ -120,26 +132,7 @@ export const translations: Record<Lang, Dict> = {
       intro:
         'Una selección de proyectos en los que he trabajado, aplicando mis conocimientos para crear soluciones eficientes, escalables y centradas en las necesidades de los usuarios.',
       viewProject: 'Ver proyecto',
-      items: [
-        {
-          title: 'Sakura Tasks',
-          subtitle: 'Aplicación de Gestión de Tareas',
-          description:
-            'Aplicación web para la gestión de tareas y proyectos en equipo. Permite organizar, asignar y dar seguimiento al progreso de actividades de forma sencilla e intuitiva.',
-        },
-        {
-          title: 'E-Kanban',
-          subtitle: 'Tablero Kanban Colaborativo',
-          description:
-            'Plataforma web colaborativa tipo Kanban para la gestión ágil de proyectos. Drag & drop, columnas personalizables y notificaciones en tiempo real.',
-        },
-        {
-          title: 'Portafolio V1.0',
-          subtitle: 'Sitio Web Personal',
-          description:
-            'Sitio web personal desarrollado para mostrar mis habilidades, proyectos y experiencia. Diseño inspirado en la estética japonesa con tecnologías modernas.',
-        },
-      ],
+      viewAll:     'Ver todos los proyectos',
     },
     experiencia: {
       title: 'Experiencia',
@@ -164,6 +157,20 @@ export const translations: Record<Lang, Dict> = {
         },
       ],
     },
+    habilidades: {
+      title: 'Habilidades',
+      stamp: '技術',
+      intro:
+        'Las herramientas con las que construyo. Cada categoría agrupa el stack que más uso a diario, desde frontend y backend hasta IA y los agentes con los que hago pair programming.',
+    },
+    galeria: {
+      title: 'Galería',
+      stamp: '作品',
+      intro:
+        'Todos los proyectos en los que he trabajado este año, desde experimentos rápidos hasta plataformas full-stack en producción. Cada tarjeta muestra el stack real que usé.',
+      backHome: 'Volver al inicio',
+      yearLabel: 'Año',
+    },
     contacto: {
       title: 'Contacto',
       stamp: '問合せ',
@@ -174,10 +181,10 @@ export const translations: Record<Lang, Dict> = {
         '¡Hablemos!',
       ],
       info: {
-        email:    { label: 'EMAIL',     value: 'hola@tuportafolio.dev',             href: 'mailto:hola@tuportafolio.dev' },
-        location: { label: 'UBICACIÓN', value: 'México' },
-        linkedin: { label: 'LINKEDIN',  value: 'linkedin.com/in/tuportafolio',      href: 'https://linkedin.com/in/tuportafolio' },
-        github:   { label: 'GITHUB',    value: 'github.com/tuportafolio',           href: 'https://github.com/tuportafolio' },
+        email:    { label: 'EMAIL',     value: 'pa.garciaperezvela@ugto.mx',     href: 'mailto:pa.garciaperezvela@ugto.mx' },
+        location: { label: 'UBICACIÓN', value: 'Guanajuato, México' },
+        linkedin: { label: 'LINKEDIN',  value: 'linkedin.com/in/patricioagpv',   href: 'https://www.linkedin.com/in/patricioagpv/' },
+        github:   { label: 'GITHUB',    value: 'github.com/p5Patricio',          href: 'https://github.com/p5Patricio' },
       },
       form: {
         nameLabel:          'NOMBRE',
@@ -234,26 +241,7 @@ export const translations: Record<Lang, Dict> = {
       intro:
         'A selection of projects I have worked on, applying my knowledge to build efficient, scalable solutions centered around user needs.',
       viewProject: 'View project',
-      items: [
-        {
-          title: 'Sakura Tasks',
-          subtitle: 'Task Management Application',
-          description:
-            'Web application for managing tasks and team projects. Organize, assign and track the progress of activities in a simple and intuitive way.',
-        },
-        {
-          title: 'E-Kanban',
-          subtitle: 'Collaborative Kanban Board',
-          description:
-            'Collaborative Kanban-style web platform for agile project management. Drag & drop, customizable columns and real-time notifications.',
-        },
-        {
-          title: 'Portfolio V1.0',
-          subtitle: 'Personal Website',
-          description:
-            'Personal website built to showcase my skills, projects and experience. Design inspired by Japanese aesthetics with modern technologies.',
-        },
-      ],
+      viewAll:     'View all projects',
     },
     experiencia: {
       title: 'Experience',
@@ -278,6 +266,20 @@ export const translations: Record<Lang, Dict> = {
         },
       ],
     },
+    habilidades: {
+      title: 'Skills',
+      stamp: '技術',
+      intro:
+        'The tools I build with. Each category groups the stack I use day to day — from frontend and backend to AI and the agents I pair-program with.',
+    },
+    galeria: {
+      title: 'Gallery',
+      stamp: '作品',
+      intro:
+        'Every project I have worked on this year — from quick experiments to full-stack platforms in production. Each card shows the actual stack I used.',
+      backHome: 'Back to home',
+      yearLabel: 'Year',
+    },
     contacto: {
       title: 'Contact',
       stamp: '問合せ',
@@ -288,10 +290,10 @@ export const translations: Record<Lang, Dict> = {
         'Let’s talk!',
       ],
       info: {
-        email:    { label: 'EMAIL',    value: 'hola@tuportafolio.dev',        href: 'mailto:hola@tuportafolio.dev' },
-        location: { label: 'LOCATION', value: 'Mexico' },
-        linkedin: { label: 'LINKEDIN', value: 'linkedin.com/in/tuportafolio', href: 'https://linkedin.com/in/tuportafolio' },
-        github:   { label: 'GITHUB',   value: 'github.com/tuportafolio',      href: 'https://github.com/tuportafolio' },
+        email:    { label: 'EMAIL',    value: 'pa.garciaperezvela@ugto.mx',     href: 'mailto:pa.garciaperezvela@ugto.mx' },
+        location: { label: 'LOCATION', value: 'Guanajuato, Mexico' },
+        linkedin: { label: 'LINKEDIN', value: 'linkedin.com/in/patricioagpv',   href: 'https://www.linkedin.com/in/patricioagpv/' },
+        github:   { label: 'GITHUB',   value: 'github.com/p5Patricio',          href: 'https://github.com/p5Patricio' },
       },
       form: {
         nameLabel:          'NAME',

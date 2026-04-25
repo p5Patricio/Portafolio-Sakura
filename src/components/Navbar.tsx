@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import SakuraStamp from './SakuraStamp'
+import Logo from './Logo'
 import LanguageSelector from './LanguageSelector'
 import { useLanguage } from '../context/LanguageContext'
 
@@ -40,6 +40,12 @@ function useActiveSection(): string {
   return active
 }
 
+// Shared glass capsule styling — keeps the three desktop nav elements visually
+// consistent (same height, blur, border, shadow). Height is fixed so the brand,
+// nav links, and language selector all line up perfectly.
+const CAPSULE =
+  'h-12 rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]'
+
 function Navbar() {
   const active = useActiveSection()
   const { t } = useLanguage()
@@ -52,13 +58,16 @@ function Navbar() {
       {/* Brand */}
       <motion.a
         href="#inicio"
-        className="hidden lg:flex fixed top-7 left-8 xl:left-12 z-40 items-center gap-3 group rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)] pl-2 pr-5 py-1.5"
+        className={`hidden lg:flex fixed top-7 left-8 xl:left-12 z-40 items-center gap-3 group pl-1.5 pr-5 ${CAPSULE}`}
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         aria-label={t.brand.title}
       >
-        <SakuraStamp className="w-11 h-11 transition-transform duration-300 group-hover:scale-105" />
+        <Logo
+          alt={t.brand.title}
+          className="w-9 h-9 transition-transform duration-300 group-hover:scale-110"
+        />
         <div className="leading-tight">
           <p className="font-bold text-color-tinta tracking-[0.2em] text-sm">
             {t.brand.title}
@@ -77,14 +86,14 @@ function Navbar() {
         transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
         aria-label="Primary"
       >
-        <ul className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]">
+        <ul className={`flex items-center gap-0.5 px-2 ${CAPSULE}`}>
           {linkDefs.map(({ id, href, labelKey }) => {
             const isActive = active === id
             return (
               <li key={id} className="relative">
                 <a
                   href={href}
-                  className={`relative block whitespace-nowrap px-3.5 xl:px-4 py-2 text-[0.7rem] xl:text-[0.75rem] tracking-[0.2em] uppercase font-semibold rounded-full transition-colors ${
+                  className={`relative block whitespace-nowrap px-3.5 xl:px-4 py-1.5 text-[0.7rem] xl:text-[0.75rem] tracking-[0.2em] uppercase font-semibold rounded-full transition-colors ${
                     isActive
                       ? 'text-color-papel'
                       : 'text-color-tinta/70 hover:text-color-tinta'

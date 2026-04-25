@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
-import { projectsData } from '../data/projects'
+import { FEATURED_REPOS } from '../data/repos'
 import SakuraIcon from './SakuraIcon'
 import HankoStamp from './HankoStamp'
 import ProjectCard from './ProjectCard'
 
 function Proyectos() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   return (
     <section
@@ -62,24 +64,38 @@ function Proyectos() {
         {t.proyectos.intro}
       </motion.p>
 
-      {/* Cards grid */}
+      {/* Cards grid — only the 3 featured projects */}
       <div className="w-full max-w-6xl mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        {projectsData.map((project, i) => {
-          const item = t.proyectos.items[i]
-          if (!item) return null
-          return (
-            <ProjectCard
-              key={project.id}
-              meta={project}
-              title={item.title}
-              subtitle={item.subtitle}
-              description={item.description}
-              viewProjectLabel={t.proyectos.viewProject}
-              index={i}
-            />
-          )
-        })}
+        {FEATURED_REPOS.map((repo, i) => (
+          <ProjectCard
+            key={repo.id}
+            repo={repo}
+            lang={lang}
+            viewProjectLabel={t.proyectos.viewProject}
+            index={i}
+          />
+        ))}
       </div>
+
+      {/* CTA → full project gallery page */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+        className="mt-14"
+      >
+        <Link
+          to="/galeria"
+          className="group inline-flex items-center gap-3 rounded-full bg-color-tinta text-color-papel px-7 py-3 text-xs uppercase tracking-[0.3em] font-semibold shadow-[0_8px_24px_-10px_rgba(26,26,26,0.5)] hover:shadow-[0_12px_30px_-12px_rgba(26,26,26,0.55)] transition-shadow"
+        >
+          <span>{t.proyectos.viewAll}</span>
+          <ArrowRight
+            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+            strokeWidth={2}
+          />
+        </Link>
+      </motion.div>
 
       {/* Bottom sakura ornament */}
       <div className="flex items-center gap-3 mt-20">
