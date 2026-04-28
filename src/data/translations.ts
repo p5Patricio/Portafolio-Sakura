@@ -142,18 +142,18 @@ export const translations: Record<Lang, Dict> = {
       placeholderImage: 'Imagen pendiente',
       items: [
         {
-          period: 'TODO · Año',
+          period: 'Por definir',
           title: 'Graduación Universitaria',
-          institution: 'TODO · Nombre de la universidad',
+          institution: 'Próximamente',
           description:
-            'TODO · Breve descripción de tu carrera, áreas de enfoque y logros más relevantes durante tu formación universitaria.',
+            'Próximamente — los detalles de mi formación universitaria se actualizarán en breve.',
         },
         {
-          period: 'TODO · Periodo',
+          period: 'Por definir',
           title: 'Prácticas Profesionales',
-          institution: 'Mazda · TODO · Puesto / área',
+          institution: 'Mazda · Próximamente',
           description:
-            'TODO · Breve descripción de tu rol en Mazda, tecnologías utilizadas, proyectos en los que participaste y aprendizajes clave.',
+            'Próximamente — los detalles de mi experiencia en Mazda se actualizarán en breve.',
         },
       ],
     },
@@ -251,18 +251,18 @@ export const translations: Record<Lang, Dict> = {
       placeholderImage: 'Image pending',
       items: [
         {
-          period: 'TODO · Year',
+          period: 'TBD',
           title: 'University Graduation',
-          institution: 'TODO · University name',
+          institution: 'Coming soon',
           description:
-            'TODO · Brief description of your degree, areas of focus and most relevant achievements during your university studies.',
+            'Coming soon — details about my university studies will be updated shortly.',
         },
         {
-          period: 'TODO · Period',
+          period: 'TBD',
           title: 'Internship',
-          institution: 'Mazda · TODO · Role / area',
+          institution: 'Mazda · Coming soon',
           description:
-            'TODO · Brief description of your role at Mazda, technologies used, projects you contributed to and key takeaways.',
+            'Coming soon — details about my experience at Mazda will be updated shortly.',
         },
       ],
     },
