@@ -63,7 +63,6 @@ import { FaWindows, FaMicrochip, FaTerminal, FaRobot, FaBrain } from 'react-icon
 // Kimi Code, Gentle-AI). Some have no Simple Icons brand asset — we map those
 // to a generic AI icon.
 
-// eslint-disable-next-line react-refresh/only-export-components
 export type TechId =
   // Frontend
   | 'react'
