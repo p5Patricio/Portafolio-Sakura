@@ -97,7 +97,6 @@ function Contacto() {
   const c = t.contacto
 
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [sending, setSending] = useState(false)
 
   const handleChange = (key: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -105,12 +104,7 @@ function Contacto() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Placeholder — wire up real submission (EmailJS, Formspree, custom API) later.
-    setSending(true)
-    setTimeout(() => {
-      setSending(false)
-      setForm({ name: '', email: '', subject: '', message: '' })
-    }, 800)
+    // View-only form — submission will be wired up later (EmailJS, Formspree, etc.)
   }
 
   return (
@@ -257,14 +251,14 @@ function Contacto() {
             </div>
           </Field>
 
-          <div className="flex items-center justify-center lg:justify-start mt-2">
+          <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
             <div className="relative inline-block">
               <BrushButton
                 type="submit"
-                disabled={sending}
-                ariaLabel={c.form.submit}
+                disabled={true}
+                ariaLabel={`${c.form.submit} — ${c.form.disabledHint}`}
               >
-                {sending ? '...' : c.form.submit}
+                {c.form.submit}
               </BrushButton>
               {/* Sakura accent floating on the top-right corner of the button */}
               <SakuraIcon
@@ -272,6 +266,9 @@ function Contacto() {
                 className="absolute -top-1 -right-2 w-4 h-4 text-color-sakura pointer-events-none drop-shadow-sm"
               />
             </div>
+            <p className="text-xs text-color-tinta/60 text-center lg:text-left max-w-xs">
+              {c.form.disabledHint}
+            </p>
           </div>
         </form>
       </div>

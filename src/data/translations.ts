@@ -85,6 +85,7 @@ type Dict = {
       messageLabel: string
       messagePlaceholder: string
       submit: string
+      disabledHint: string
     }
   }
 }
@@ -196,6 +197,7 @@ export const translations: Record<Lang, Dict> = {
         messageLabel:       'MENSAJE',
         messagePlaceholder: 'Escribe tu mensaje aquí...',
         submit:             'Enviar mensaje',
+        disabledHint:       'El envío de mensajes estará disponible pronto. Contactame directamente por email o LinkedIn.',
       },
     },
   },
@@ -305,6 +307,7 @@ export const translations: Record<Lang, Dict> = {
         messageLabel:       'MESSAGE',
         messagePlaceholder: 'Write your message here...',
         submit:             'Send message',
+        disabledHint:       'Message sending will be available soon. Contact me directly via email or LinkedIn.',
       },
     },
   },
