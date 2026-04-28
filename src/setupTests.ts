@@ -15,10 +15,12 @@ globalThis.IntersectionObserver = class IntersectionObserver {
 globalThis.scrollTo = vi.fn()
 
 // Silence Framer Motion warnings in tests and disable animations for determinism
+// This mock enforces prefers-reduced-motion, which is equivalent to
+// wrapping every render with <MotionConfig reducedMotion="always" />.
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query: string) => ({
-    matches: false,
+    matches: query.includes('prefers-reduced-motion'),
     media: query,
     onchange: null,
     addListener: vi.fn(),
