@@ -26,10 +26,7 @@ function ProjectCarousel({ images, title, autoPlayMs = 5000 }: Props) {
   const hasImages = images.length > 0
   const multiple = images.length > 1
 
-  // Clamp index if the images array ever shrinks
-  useEffect(() => {
-    if (index >= images.length && images.length > 0) setIndex(0)
-  }, [images.length, index])
+  const safeIndex = images.length > 0 ? Math.min(index, images.length - 1) : 0
 
   useEffect(() => {
     if (!multiple || !autoPlayMs) return
@@ -61,9 +58,9 @@ function ProjectCarousel({ images, title, autoPlayMs = 5000 }: Props) {
     <div className="relative w-full aspect-[16/9] overflow-hidden group/carousel bg-color-tinta/5">
       <AnimatePresence mode="wait">
         <motion.img
-          key={index}
-          src={images[index]}
-          alt={`${title} — ${index + 1}`}
+          key={safeIndex}
+          src={images[safeIndex]}
+          alt={`${title} — ${safeIndex + 1}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -101,7 +98,7 @@ function ProjectCarousel({ images, title, autoPlayMs = 5000 }: Props) {
                 onClick={() => setIndex(i)}
                 aria-label={`Ir a la imagen ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === index
+                  i === safeIndex
                     ? 'bg-color-tinta w-5'
                     : 'bg-color-tinta/40 w-1.5 hover:bg-color-tinta/70'
                 }`}

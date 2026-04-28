@@ -11,16 +11,22 @@ type Petal = {
   opacity: number
 }
 
+// Deterministic pseudo-random generator so petal values are stable across renders
+function seededRandom(seed: number) {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453
+  return x - Math.floor(x)
+}
+
 function SakuraPetals() {
   const petals: Petal[] = useMemo(
     () =>
       Array.from({ length: PETAL_COUNT }, (_, i) => ({
         id: i,
-        left: Math.random() * 100,
-        size: 8 + Math.random() * 10,
-        duration: 9 + Math.random() * 8,
-        delay: -Math.random() * 15,
-        opacity: 0.55 + Math.random() * 0.35,
+        left: seededRandom(i) * 100,
+        size: 8 + seededRandom(i + 100) * 10,
+        duration: 9 + seededRandom(i + 200) * 8,
+        delay: -seededRandom(i + 300) * 15,
+        opacity: 0.55 + seededRandom(i + 400) * 0.35,
       })),
     [],
   )
