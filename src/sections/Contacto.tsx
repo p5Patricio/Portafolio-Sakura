@@ -208,6 +208,8 @@ function Contacto() {
             icon={MapPin}
             label={c.info.location.label}
             value={c.info.location.value}
+            href="https://www.google.com.mx/maps/place/Guanajuato,+Gto./@21.0250736,-101.2991017,13z/data=!3m1!4b1!4m6!3m5!1s0x842b73f58b0cf1eb:0x25f4b0d165571e74!8m2!3d21.0190145!4d-101.2573586!16zL20vMDE4bmI4?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D"
+            actionIcon={ExternalLink}
           />
           <InfoRow
             icon={LinkedInIcon}
