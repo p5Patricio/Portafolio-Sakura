@@ -66,7 +66,7 @@ function Navbar() {
       >
         <Logo
           alt={t.brand.title}
-          className="w-9 h-9 transition-transform duration-300 group-hover:scale-110"
+          className="h-9 w-auto transition-transform duration-300 group-hover:scale-110"
         />
         <div className="leading-tight">
           <p className="font-bold text-color-tinta tracking-[0.2em] text-sm">

@@ -102,7 +102,7 @@ export const translations: Record<Lang, Dict> = {
     },
     brand: {
       title:    'PORTAFOLIO',
-      subtitle: 'Ingeniero de Software',
+      subtitle: 'patodev · Ingeniero de Software',
     },
     hero: {
       words: [
@@ -212,7 +212,7 @@ export const translations: Record<Lang, Dict> = {
     },
     brand: {
       title:    'PORTFOLIO',
-      subtitle: 'Software Engineer',
+      subtitle: 'patodev · Software Engineer',
     },
     hero: {
       words: [
