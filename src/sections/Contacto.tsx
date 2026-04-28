@@ -2,13 +2,13 @@ import { useState, type FormEvent, type ReactNode, type SVGProps } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Send } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
-import SakuraIcon from './SakuraIcon'
-import HankoStamp from './HankoStamp'
-import BrushButton from './BrushButton'
+import SakuraIcon from '../components/SakuraIcon'
+import HankoStamp from '../components/HankoStamp'
+import BrushButton from '../components/BrushButton'
 
 // ---------- Brand icons (not available in lucide-react) ----------
 
-function GitHubIcon({ className, strokeWidth: _sw, ...props }: SVGProps<SVGSVGElement> & { strokeWidth?: number }) {
+function GitHubIcon({ className, ...props }: SVGProps<SVGSVGElement> & { strokeWidth?: number }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true" {...props}>
       <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.268 2.742 1.021A9.582 9.582 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.021 2.747-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.679.917.679 1.852 0 1.335-.012 2.415-.012 2.741 0 .269.18.579.688.481C19.138 20.107 22 16.373 22 11.969 22 6.463 17.522 2 12 2z" />
@@ -16,7 +16,7 @@ function GitHubIcon({ className, strokeWidth: _sw, ...props }: SVGProps<SVGSVGEl
   )
 }
 
-function LinkedInIcon({ className, strokeWidth: _sw, ...props }: SVGProps<SVGSVGElement> & { strokeWidth?: number }) {
+function LinkedInIcon({ className, ...props }: SVGProps<SVGSVGElement> & { strokeWidth?: number }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true" {...props}>
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />

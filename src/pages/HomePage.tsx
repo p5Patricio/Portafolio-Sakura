@@ -1,9 +1,9 @@
-import Hero from '../components/Hero'
-import SobreMi from '../components/SobreMi'
-import Experiencia from '../components/Experiencia'
-import Proyectos from '../components/Proyectos'
-import Habilidades from '../components/Habilidades'
-import Contacto from '../components/Contacto'
+import Hero from '../sections/Hero'
+import SobreMi from '../sections/SobreMi'
+import Experiencia from '../sections/Experiencia'
+import Proyectos from '../sections/Proyectos'
+import Habilidades from '../sections/Habilidades'
+import Contacto from '../sections/Contacto'
 
 /**
  * Single-page home — every section in the original order from the design

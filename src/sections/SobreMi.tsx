@@ -1,6 +1,6 @@
 import { User, Target, Eye, Heart, type LucideIcon } from 'lucide-react'
-import SakuraIcon from './SakuraIcon'
-import ValueCard from './ValueCard'
+import SakuraIcon from '../components/SakuraIcon'
+import ValueCard from '../components/ValueCard'
 import { useLanguage } from '../context/LanguageContext'
 
 const icons: LucideIcon[] = [User, Target, Eye, Heart]

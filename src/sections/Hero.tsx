@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import BrushText from './BrushText'
-import HeroQuote from './HeroQuote'
+import BrushText from '../components/BrushText'
+import HeroQuote from '../components/HeroQuote'
 
 function Hero() {
   const ref = useRef<HTMLElement>(null)

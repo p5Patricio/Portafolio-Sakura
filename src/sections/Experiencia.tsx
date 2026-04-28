@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase, ImageIcon, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
-import SakuraIcon from './SakuraIcon'
-import HankoStamp from './HankoStamp'
+import SakuraIcon from '../components/SakuraIcon'
+import HankoStamp from '../components/HankoStamp'
 
 // ---------- Data shape ----------
 //

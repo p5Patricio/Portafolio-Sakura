@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { SKILL_CATEGORIES, type SkillCategory } from '../data/skills'
-import SakuraIcon from './SakuraIcon'
-import HankoStamp from './HankoStamp'
-import TechIcon, { TECH_LABELS } from './TechIcon'
-import type { TechId } from './TechIcon'
+import SakuraIcon from '../components/SakuraIcon'
+import HankoStamp from '../components/HankoStamp'
+import TechIcon, { TECH_LABELS } from '../components/TechIcon'
+import type { TechId } from '../components/TechIcon'
 import type { Lang } from '../data/translations'
 
 // ---------- Sub-components ----------

@@ -1,4 +1,4 @@
-import type { ProjectIllustration as Variant } from '../data/projects'
+import type { ProjectIllustration as Variant } from '../data/repos'
 
 type Props = {
   variant: Variant

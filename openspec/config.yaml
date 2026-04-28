@@ -1,0 +1,69 @@
+﻿schema: spec-driven
+
+context: |
+  Tech stack: React 19 + TypeScript 6 + Vite 8 + Tailwind CSS v4
+  Architecture: SPA with React Router DOM, context-based i18n (es/en)
+  Testing: No test runner installed
+  Style: ESLint 10 + typescript-eslint, custom @theme design tokens
+
+strict_tdd: false
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected components and data files
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing code patterns and conventions
+    - Load relevant coding skills for the project stack
+    - Preserve Tailwind v4 @theme tokens and custom CSS animations
+    - Maintain i18n coverage for both es and en languages
+  verify:
+    - Run build if test infrastructure is absent: npm run build
+    - Run linter: npm run lint
+    - Compare implementation against every spec scenario
+  archive:
+    - Warn before merging destructive deltas (large removals)
+
+testing:
+  strict_tdd_mode: false
+  detected: 2026-04-28
+
+  test_runner:
+    command: ""
+    framework: "NOT FOUND"
+
+  test_layers:
+    unit:
+      available: false
+      tool: "-"
+    integration:
+      available: false
+      tool: "-"
+    e2e:
+      available: false
+      tool: "-"
+
+  coverage:
+    available: false
+    command: "-"
+
+  quality_tools:
+    linter:
+      available: true
+      command: "npm run lint"
+    type_checker:
+      available: true
+      command: "tsc -b"
+    formatter:
+      available: false
+      command: "-"

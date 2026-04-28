@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { FEATURED_REPOS } from '../data/repos'
-import SakuraIcon from './SakuraIcon'
-import HankoStamp from './HankoStamp'
-import ProjectCard from './ProjectCard'
+import SakuraIcon from '../components/SakuraIcon'
+import HankoStamp from '../components/HankoStamp'
+import ProjectCard from '../components/ProjectCard'
 
 function Proyectos() {
   const { t, lang } = useLanguage()
