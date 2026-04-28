@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { translations, type Lang } from '../data/translations'
 
 type Ctx = {
@@ -12,6 +12,10 @@ const LanguageContext = createContext<Ctx | null>(null)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('es')
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
   const toggleLang = () => setLang((prev) => (prev === 'es' ? 'en' : 'es'))
 
