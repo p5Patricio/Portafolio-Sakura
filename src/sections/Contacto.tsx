@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ReactNode, type SVGProps } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Send } from 'lucide-react'
+import { Mail, MapPin, Send, Copy, ExternalLink, Check } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SakuraIcon from '../components/SakuraIcon'
 import HankoStamp from '../components/HankoStamp'
@@ -33,22 +33,41 @@ type InfoRowProps = {
   label: string
   value: string
   href?: string
+  onClick?: () => void
+  actionIcon?: IconComponent
 }
 
-function InfoRow({ icon: Icon, label, value, href }: InfoRowProps) {
+function InfoRow({ icon: Icon, label, value, href, onClick, actionIcon: ActionIcon }: InfoRowProps) {
   const content = (
     <div className="flex items-center gap-5 group">
       <span className="flex-shrink-0 w-12 h-12 rounded-full bg-color-tinta flex items-center justify-center text-color-papel shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] transition-transform duration-300 group-hover:scale-[1.05]">
         <Icon className="w-5 h-5" strokeWidth={1.8} />
       </span>
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-0.5 flex-1">
         <span className="text-xs text-color-tinta font-semibold tracking-[0.3em]">
           {label}
         </span>
-        <span className="text-sm text-color-tinta/75">{value}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-color-tinta/75">{value}</span>
+          {ActionIcon && (
+            <ActionIcon className="w-3.5 h-3.5 text-color-tinta/40 group-hover:text-color-sakura transition-colors shrink-0" strokeWidth={2.5} />
+          )}
+        </div>
       </div>
     </div>
   )
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className="block w-full text-left hover:text-color-sakura transition-colors cursor-pointer bg-transparent border-none p-0"
+      >
+        {content}
+      </button>
+    )
+  }
 
   if (href) {
     const external = href.startsWith('http')
@@ -97,6 +116,17 @@ function Contacto() {
   const c = t.contacto
 
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(c.info.email.value)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Silently fail if clipboard API is unavailable
+    }
+  }
 
   const handleChange = (key: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -167,10 +197,32 @@ function Contacto() {
       <div className="w-full max-w-5xl mt-14 grid grid-cols-1 lg:grid-cols-[1fr_auto_1.2fr] gap-10 lg:gap-14 items-start">
         {/* Info column */}
         <div className="flex flex-col gap-8">
-          <InfoRow icon={Mail}        {...c.info.email} />
-          <InfoRow icon={MapPin}      {...c.info.location} />
-          <InfoRow icon={LinkedInIcon} {...c.info.linkedin} />
-          <InfoRow icon={GitHubIcon}   {...c.info.github} />
+          <InfoRow
+            icon={Mail}
+            label={c.info.email.label}
+            value={c.info.email.value}
+            onClick={copyEmail}
+            actionIcon={copied ? Check : Copy}
+          />
+          <InfoRow
+            icon={MapPin}
+            label={c.info.location.label}
+            value={c.info.location.value}
+          />
+          <InfoRow
+            icon={LinkedInIcon}
+            label={c.info.linkedin.label}
+            value={c.info.linkedin.value}
+            href={c.info.linkedin.href}
+            actionIcon={ExternalLink}
+          />
+          <InfoRow
+            icon={GitHubIcon}
+            label={c.info.github.label}
+            value={c.info.github.value}
+            href={c.info.github.href}
+            actionIcon={ExternalLink}
+          />
         </div>
 
         {/* Vertical divider with sakura */}
