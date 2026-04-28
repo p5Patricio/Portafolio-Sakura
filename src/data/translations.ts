@@ -142,18 +142,18 @@ export const translations: Record<Lang, Dict> = {
       placeholderImage: 'Imagen pendiente',
       items: [
         {
-          period: 'Por definir',
+          period: '2021 — 2025',
           title: 'Graduación Universitaria',
-          institution: 'Próximamente',
+          institution: 'Universidad de Guanajuato',
           description:
-            'Próximamente — los detalles de mi formación universitaria se actualizarán en breve.',
+            'Formación en ingeniería de software con énfasis en desarrollo web, algoritmos, estructuras de datos y arquitectura de sistemas. Participación en proyectos académicos de machine learning y visión por computadora.',
         },
         {
-          period: 'Por definir',
+          period: '2025',
           title: 'Prácticas Profesionales',
-          institution: 'Mazda · Próximamente',
+          institution: 'Mazda Motor Manufacturing',
           description:
-            'Próximamente — los detalles de mi experiencia en Mazda se actualizarán en breve.',
+            'Desarrollo de soluciones internas para automatización de procesos, colaboración en equipo multidisciplinario y aplicación de metodologías ágiles en un entorno industrial.',
         },
       ],
     },
@@ -251,18 +251,18 @@ export const translations: Record<Lang, Dict> = {
       placeholderImage: 'Image pending',
       items: [
         {
-          period: 'TBD',
+          period: '2021 — 2025',
           title: 'University Graduation',
-          institution: 'Coming soon',
+          institution: 'Universidad de Guanajuato',
           description:
-            'Coming soon — details about my university studies will be updated shortly.',
+            'Software engineering education with emphasis on web development, algorithms, data structures, and systems architecture. Participation in academic projects involving machine learning and computer vision.',
         },
         {
-          period: 'TBD',
+          period: '2025',
           title: 'Internship',
-          institution: 'Mazda · Coming soon',
+          institution: 'Mazda Motor Manufacturing',
           description:
-            'Coming soon — details about my experience at Mazda will be updated shortly.',
+            'Development of internal solutions for process automation, collaboration within a multidisciplinary team, and application of agile methodologies in an industrial environment.',
         },
       ],
     },
