@@ -39,7 +39,7 @@ type InfoRowProps = {
 
 function InfoRow({ icon: Icon, label, value, href, onClick, actionIcon: ActionIcon }: InfoRowProps) {
   const content = (
-    <div className="flex items-center gap-5 group">
+    <div className="flex items-center gap-5 group bg-color-papel/70 rounded-xl p-4">
       <span className="flex-shrink-0 w-12 h-12 rounded-full bg-color-tinta flex items-center justify-center text-color-papel shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] transition-transform duration-300 group-hover:scale-[1.05]">
         <Icon className="w-5 h-5" strokeWidth={1.8} />
       </span>
@@ -169,11 +169,11 @@ function Contacto() {
     <section
       ref={ref}
       id="contacto"
-      className="relative min-h-[120vh] overflow-hidden"
+      className="relative overflow-hidden pb-[40vh]"
     >
       <motion.div
         style={{ y: bgY, scale: bgScale, opacity: bgOpacity }}
-        className="absolute inset-0 bg-[url('/src/assets/Contacto-Phone.webp')] md:bg-[url('/src/assets/Contacto-Desktop.webp')] bg-cover bg-center will-change-transform"
+        className="absolute inset-0 bg-color-papel bg-[url('/src/assets/Contacto-Phone.webp')] md:bg-[url('/src/assets/Contacto-Desktop.webp')] bg-cover md:bg-contain bg-center bg-no-repeat will-change-transform"
       />
       <div className="relative z-10 px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center">
       {/* Title + hanko */}
@@ -282,6 +282,7 @@ function Contacto() {
         </div>
 
         {/* Form column */}
+        <div className="bg-color-papel/70 rounded-xl p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Field id="contact-name" label={c.form.nameLabel}>
@@ -366,6 +367,7 @@ function Contacto() {
             )}
           </div>
         </form>
+        </div>
       </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-color-papel via-color-papel/80 to-transparent z-20 pointer-events-none" />
