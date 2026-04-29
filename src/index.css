@@ -56,11 +56,20 @@ body {
   10% {
     opacity: 1;
   }
+  25% {
+    transform: translate3d(calc(var(--petal-drift) * 0.25), 25vh, 0) rotate(calc(var(--petal-sway) * 0.25));
+  }
+  50% {
+    transform: translate3d(calc(var(--petal-drift) * 0.6), 50vh, 0) rotate(calc(var(--petal-sway) * 0.5));
+  }
+  75% {
+    transform: translate3d(calc(var(--petal-drift) * 0.85), 75vh, 0) rotate(calc(var(--petal-sway) * 0.75));
+  }
   90% {
     opacity: 1;
   }
   100% {
-    transform: translate3d(40px, 110vh, 0) rotate(720deg);
+    transform: translate3d(var(--petal-drift), 110vh, 0) rotate(var(--petal-sway));
     opacity: 0;
   }
 }
@@ -68,8 +77,6 @@ body {
 .sakura-petal {
   position: absolute;
   top: 0;
-  background: radial-gradient(ellipse at 30% 30%, #f5cfd1 0%, #e8a4aa 55%, #c95b64 100%);
-  border-radius: 150% 0 150% 0;
   animation-name: sakura-fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;

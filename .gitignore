@@ -25,3 +25,7 @@ dist-ssr
 
 # Agent infrastructure
 .atl/
+.claude/
+
+# Environment variables
+.env

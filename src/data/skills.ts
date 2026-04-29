@@ -38,8 +38,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'APIs robustas, modelado de datos y persistencia.',
       en: 'Robust APIs, data modeling and persistence.',
     },
-    skills: ['python', 'node', 'fastapi', 'sqlalchemy', 'postgres', 'mysql', 'sqlite', 'mongodb', 'firebase', 'neon'],
-    highlight: 'fastapi',
+    skills: ['python', 'node', 'fastapi', 'sqlalchemy', 'postgres', 'mysql', 'sqlite', 'mongodb', 'firebase', 'supabase', 'neon'],
+    highlight: 'python',
   },
   {
     id: 'ai-ml',
@@ -48,7 +48,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'LLMs en producción, machine learning y desarrollo con agentes.',
       en: 'Production LLMs, machine learning and agent-powered development.',
     },
-    skills: ['claude-code', 'antigravity', 'kimi-code', 'gentle-ai', 'stitch', 'gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
+    skills: ['claude-code', 'antigravity', 'kimi-code', 'openclaw', 'gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
     highlight: 'claude-code',
   },
   {
@@ -58,7 +58,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Containers, despliegues y flujo diario.',
       en: 'Containers, deployments and daily workflow.',
     },
-    skills: ['git', 'github', 'docker', 'linux', 'windows', 'cloudflare', 'vercel', 'render', 'notion', 'obsidian'],
-    highlight: 'docker',
+    skills: ['github', 'git', 'docker', 'linux', 'windows', 'cloudflare', 'vercel', 'render', 'notion', 'obsidian'],
+    highlight: 'github',
   },
 ]

@@ -7,8 +7,8 @@ import { useLanguage } from '../context/LanguageContext'
 const linkDefs = [
   { id: 'inicio',      href: '#inicio',      labelKey: 'inicio' },
   { id: 'sobre-mi',    href: '#sobre-mi',    labelKey: 'sobreMi' },
-  { id: 'proyectos',   href: '#proyectos',   labelKey: 'proyectos' },
   { id: 'experiencia', href: '#experiencia', labelKey: 'experiencia' },
+  { id: 'proyectos',   href: '#proyectos',   labelKey: 'proyectos' },
   { id: 'habilidades', href: '#habilidades', labelKey: 'habilidades' },
   { id: 'contacto',    href: '#contacto',    labelKey: 'contacto' },
 ] as const

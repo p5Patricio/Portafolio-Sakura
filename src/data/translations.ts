@@ -85,7 +85,9 @@ type Dict = {
       messageLabel: string
       messagePlaceholder: string
       submit: string
-      disabledHint: string
+      sending: string
+      success: string
+      error: string
     }
   }
 }
@@ -197,7 +199,9 @@ export const translations: Record<Lang, Dict> = {
         messageLabel:       'MENSAJE',
         messagePlaceholder: 'Escribe tu mensaje aquí...',
         submit:             'Enviar mensaje',
-        disabledHint:       'El envío de mensajes estará disponible pronto. Contactame directamente por email o LinkedIn.',
+        sending:            'Enviando...',
+        success:            '¡Mensaje enviado! Te responderé pronto.',
+        error:              'No se pudo enviar. Intenta de nuevo más tarde.',
       },
     },
   },
@@ -307,7 +311,9 @@ export const translations: Record<Lang, Dict> = {
         messageLabel:       'MESSAGE',
         messagePlaceholder: 'Write your message here...',
         submit:             'Send message',
-        disabledHint:       'Message sending will be available soon. Contact me directly via email or LinkedIn.',
+        sending:            'Sending...',
+        success:            'Message sent! I will reply soon.',
+        error:              'Could not send. Please try again later.',
       },
     },
   },
