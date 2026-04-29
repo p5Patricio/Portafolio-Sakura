@@ -6,7 +6,6 @@ export type SkillCategoryId =
   | 'databases'
   | 'ai-ml'
   | 'devops'
-  | 'ai-dev-tools'
 
 export interface SkillCategory {
   id: SkillCategoryId
@@ -55,12 +54,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     id: 'ai-ml',
-    title: { es: 'IA y Machine Learning', en: 'AI & Machine Learning' },
+    title: { es: 'Inteligencia Artificial', en: 'Artificial Intelligence' },
     caption: {
-      es: 'Modelos clásicos, deep learning y LLMs en producción.',
-      en: 'Classical models, deep learning and LLMs in production.',
+      es: 'LLMs en producción, machine learning y desarrollo con agentes.',
+      en: 'Production LLMs, machine learning and agent-powered development.',
     },
-    skills: ['gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
+    skills: ['gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy', 'claude-code', 'antigravity', 'kimi-code', 'gentle-ai'],
     highlight: 'gemini',
   },
   {
@@ -72,15 +71,5 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel'],
     highlight: 'docker',
-  },
-  {
-    id: 'ai-dev-tools',
-    title: { es: 'Desarrollo con IA', en: 'AI-Powered Development' },
-    caption: {
-      es: 'Soy experto en construir con agentes: pair programming serio.',
-      en: 'Expert at building with agents — serious pair programming.',
-    },
-    skills: ['claude-code', 'antigravity', 'kimi-code', 'gentle-ai'],
-    highlight: 'claude-code',
   },
 ]
