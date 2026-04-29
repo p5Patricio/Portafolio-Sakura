@@ -38,7 +38,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'APIs robustas, modelado de datos y persistencia.',
       en: 'Robust APIs, data modeling and persistence.',
     },
-    skills: ['python', 'fastapi', 'node', 'sqlalchemy', 'postgres', 'mongodb', 'mysql', 'sqlite', 'firebase'],
+    skills: ['python', 'node', 'fastapi', 'sqlalchemy', 'postgres', 'mysql', 'sqlite', 'mongodb', 'firebase', 'neon'],
     highlight: 'fastapi',
   },
   {
@@ -58,7 +58,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Containers, despliegues y flujo diario.',
       en: 'Containers, deployments and daily workflow.',
     },
-    skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel', 'neon', 'render', 'notion', 'obsidian'],
+    skills: ['git', 'github', 'docker', 'linux', 'windows', 'cloudflare', 'vercel', 'render', 'notion', 'obsidian'],
     highlight: 'docker',
   },
 ]
