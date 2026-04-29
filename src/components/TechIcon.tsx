@@ -5,21 +5,14 @@ import {
   SiTypescript,
   SiJavascript,
   SiTailwindcss,
-  SiFramer,
+  SiMongodb,
   SiVite,
   SiVuedotjs,
   SiNodedotjs,
   SiPython,
   SiFastapi,
-  SiFlask,
-  SiDjango,
   SiSqlalchemy,
   SiPostgresql,
-  SiMysql,
-  SiSqlite,
-  SiRedis,
-  SiCelery,
-  SiSpacy,
   SiGooglegemini,
   SiOpenai,
   SiAnthropic,
@@ -31,19 +24,13 @@ import {
   SiCloudflare,
   SiHtml5,
   SiCss,
-  SiPhp,
-  SiLaravel,
-  SiGreensock,
   SiPandas,
   SiNumpy,
   SiScikitlearn,
   SiTensorflow,
   SiOpencv,
   SiBoost,
-  SiPostman,
-  SiFigma,
   SiVercel,
-  SiNotion,
   SiClaude,
 } from 'react-icons/si'
 
@@ -73,26 +60,16 @@ export type TechId =
   | 'html5'
   | 'css3'
   | 'tailwind'
-  | 'framer'
-  | 'gsap'
   | 'vite'
   // Backend
   | 'node'
   | 'python'
   | 'fastapi'
-  | 'flask'
-  | 'django'
-  | 'php'
-  | 'laravel'
   | 'sqlalchemy'
   // Databases
   | 'postgres'
-  | 'mysql'
-  | 'sqlite'
-  | 'redis'
+  | 'mongodb'
   // Data / ML / AI infra
-  | 'celery'
-  | 'spacy'
   | 'pandas'
   | 'numpy'
   | 'scikit'
@@ -112,9 +89,6 @@ export type TechId =
   | 'windows'
   | 'cloudflare'
   | 'vercel'
-  | 'postman'
-  | 'figma'
-  | 'notion'
   // AI dev tools (developer side)
   | 'claude-code'
   | 'antigravity'
@@ -133,23 +107,13 @@ export const TECH_LABELS: Record<TechId, string> = {
   html5: 'HTML5',
   css3: 'CSS3',
   tailwind: 'Tailwind CSS',
-  framer: 'Framer Motion',
-  gsap: 'GSAP',
   vite: 'Vite',
   node: 'Node.js',
   python: 'Python',
   fastapi: 'FastAPI',
-  flask: 'Flask',
-  django: 'Django',
-  php: 'PHP',
-  laravel: 'Laravel',
   sqlalchemy: 'SQLAlchemy',
   postgres: 'PostgreSQL',
-  mysql: 'MySQL',
-  sqlite: 'SQLite',
-  redis: 'Redis',
-  celery: 'Celery',
-  spacy: 'spaCy',
+  mongodb: 'MongoDB',
   pandas: 'Pandas',
   numpy: 'NumPy',
   scikit: 'scikit-learn',
@@ -167,9 +131,6 @@ export const TECH_LABELS: Record<TechId, string> = {
   windows: 'Windows',
   cloudflare: 'Cloudflare',
   vercel: 'Vercel',
-  postman: 'Postman',
-  figma: 'Figma',
-  notion: 'Notion',
   'claude-code': 'Claude Code',
   antigravity: 'Antigravity',
   'kimi-code': 'Kimi Code',
@@ -189,23 +150,13 @@ const ICONS: Record<TechId, IconComponent> = {
   html5: SiHtml5,
   css3: SiCss,
   tailwind: SiTailwindcss,
-  framer: SiFramer,
-  gsap: SiGreensock,
   vite: SiVite,
   node: SiNodedotjs,
   python: SiPython,
   fastapi: SiFastapi,
-  flask: SiFlask,
-  django: SiDjango,
-  php: SiPhp,
-  laravel: SiLaravel,
   sqlalchemy: SiSqlalchemy,
   postgres: SiPostgresql,
-  mysql: SiMysql,
-  sqlite: SiSqlite,
-  redis: SiRedis,
-  celery: SiCelery,
-  spacy: SiSpacy,
+  mongodb: SiMongodb,
   pandas: SiPandas,
   numpy: SiNumpy,
   scikit: SiScikitlearn,
@@ -223,9 +174,6 @@ const ICONS: Record<TechId, IconComponent> = {
   windows: FaWindows,
   cloudflare: SiCloudflare,
   vercel: SiVercel,
-  postman: SiPostman,
-  figma: SiFigma,
-  notion: SiNotion,
   // No brand assets exist for these AI tools — use semantic generics that
   // visually read as "AI / agentic":
   'claude-code': SiAnthropic,

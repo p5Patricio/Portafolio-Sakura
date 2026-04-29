@@ -18,17 +18,17 @@ type SkillChipProps = {
 function SkillChip({ id, highlighted }: SkillChipProps) {
   return (
     <li
-      className={`group relative flex flex-col items-center gap-2 px-4 py-4 rounded-xl bg-color-papel border border-color-tinta/10 hover:border-color-sakura/40 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_-8px_rgba(26,26,26,0.25)] hover:shadow-[0_8px_20px_-10px_rgba(201,91,100,0.3)]`}
+      className={`group relative flex flex-col items-center gap-2 px-3 py-3 sm:px-4 sm:py-4 rounded-xl bg-color-papel border border-color-tinta/10 hover:border-color-sakura/40 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_-8px_rgba(26,26,26,0.25)] hover:shadow-[0_8px_20px_-10px_rgba(201,91,100,0.3)]`}
     >
       <TechIcon
         id={id}
-        className={`w-9 h-9 transition-colors duration-300 ${
+        className={`w-7 h-7 sm:w-9 sm:h-9 transition-colors duration-300 ${
           highlighted
             ? 'text-color-sakura'
             : 'text-color-tinta/75 group-hover:text-color-sakura'
         }`}
       />
-      <span className="text-[0.65rem] uppercase tracking-[0.15em] text-color-tinta/65 group-hover:text-color-tinta text-center leading-tight">
+      <span className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.15em] text-color-tinta/65 group-hover:text-color-tinta text-center leading-tight">
         {TECH_LABELS[id]}
       </span>
 
@@ -71,7 +71,7 @@ function CategoryBlock({ category, lang, index }: CategoryBlockProps) {
       </p>
 
       {/* Skill grid */}
-      <ul className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
+      <ul className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4">
         {category.skills.map((skillId) => (
           <SkillChip
             key={skillId}

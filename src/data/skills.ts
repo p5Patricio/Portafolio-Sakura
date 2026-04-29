@@ -30,7 +30,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Interfaces rápidas, accesibles y con personalidad.',
       en: 'Fast, accessible interfaces with character.',
     },
-    skills: ['react', 'next', 'vue', 'ts', 'js', 'tailwind', 'framer', 'gsap', 'vite', 'html5', 'css3'],
+    skills: ['react', 'next', 'vue', 'ts', 'js', 'tailwind', 'vite', 'html5', 'css3'],
     highlight: 'react',
   },
   {
@@ -40,7 +40,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'APIs robustas, asíncronas y bien tipadas.',
       en: 'Robust, async, well-typed APIs.',
     },
-    skills: ['python', 'fastapi', 'flask', 'django', 'node', 'sqlalchemy', 'celery', 'php', 'laravel'],
+    skills: ['python', 'fastapi', 'node', 'sqlalchemy'],
     highlight: 'fastapi',
   },
   {
@@ -50,7 +50,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Modelado relacional y caches en memoria.',
       en: 'Relational modeling and in-memory caches.',
     },
-    skills: ['postgres', 'mysql', 'sqlite', 'redis'],
+    skills: ['postgres', 'mongodb'],
     highlight: 'postgres',
   },
   {
@@ -60,7 +60,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Modelos clásicos, deep learning y LLMs en producción.',
       en: 'Classical models, deep learning and LLMs in production.',
     },
-    skills: ['gemini', 'openai', 'anthropic', 'ollama', 'spacy', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
+    skills: ['gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
     highlight: 'gemini',
   },
   {
@@ -70,7 +70,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Containers, despliegues y flujo diario.',
       en: 'Containers, deployments and daily workflow.',
     },
-    skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel', 'postman', 'figma', 'notion'],
+    skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel'],
     highlight: 'docker',
   },
   {
