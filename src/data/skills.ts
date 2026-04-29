@@ -3,7 +3,6 @@ import type { TechId } from '../components/TechIcon'
 export type SkillCategoryId =
   | 'frontend'
   | 'backend'
-  | 'databases'
   | 'ai-ml'
   | 'devops'
 
@@ -34,23 +33,13 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     id: 'backend',
-    title: { es: 'Backend', en: 'Backend' },
+    title: { es: 'Backend & Bases de datos', en: 'Backend & Databases' },
     caption: {
-      es: 'APIs robustas, asíncronas y bien tipadas.',
-      en: 'Robust, async, well-typed APIs.',
+      es: 'APIs robustas, modelado de datos y persistencia.',
+      en: 'Robust APIs, data modeling and persistence.',
     },
-    skills: ['python', 'fastapi', 'node', 'sqlalchemy'],
+    skills: ['python', 'fastapi', 'node', 'sqlalchemy', 'postgres', 'mongodb', 'mysql', 'sqlite', 'firebase'],
     highlight: 'fastapi',
-  },
-  {
-    id: 'databases',
-    title: { es: 'Bases de datos', en: 'Databases' },
-    caption: {
-      es: 'Modelado relacional y caches en memoria.',
-      en: 'Relational modeling and in-memory caches.',
-    },
-    skills: ['postgres', 'mongodb'],
-    highlight: 'postgres',
   },
   {
     id: 'ai-ml',

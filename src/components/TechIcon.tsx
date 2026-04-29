@@ -6,6 +6,9 @@ import {
   SiJavascript,
   SiTailwindcss,
   SiMongodb,
+  SiMysql,
+  SiSqlite,
+  SiFirebase,
   SiVite,
   SiVuedotjs,
   SiNodedotjs,
@@ -69,6 +72,9 @@ export type TechId =
   // Databases
   | 'postgres'
   | 'mongodb'
+  | 'mysql'
+  | 'sqlite'
+  | 'firebase'
   // Data / ML / AI infra
   | 'pandas'
   | 'numpy'
@@ -114,6 +120,9 @@ export const TECH_LABELS: Record<TechId, string> = {
   sqlalchemy: 'SQLAlchemy',
   postgres: 'PostgreSQL',
   mongodb: 'MongoDB',
+  mysql: 'MySQL',
+  sqlite: 'SQLite',
+  firebase: 'Firebase',
   pandas: 'Pandas',
   numpy: 'NumPy',
   scikit: 'scikit-learn',
@@ -157,6 +166,9 @@ const ICONS: Record<TechId, IconComponent> = {
   sqlalchemy: SiSqlalchemy,
   postgres: SiPostgresql,
   mongodb: SiMongodb,
+  mysql: SiMysql,
+  sqlite: SiSqlite,
+  firebase: SiFirebase,
   pandas: SiPandas,
   numpy: SiNumpy,
   scikit: SiScikitlearn,
