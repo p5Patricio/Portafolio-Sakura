@@ -58,7 +58,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Containers, despliegues y flujo diario.',
       en: 'Containers, deployments and daily workflow.',
     },
-    skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel'],
+    skills: ['docker', 'git', 'github', 'linux', 'windows', 'cloudflare', 'vercel', 'neon', 'render', 'notion', 'obsidian'],
     highlight: 'docker',
   },
 ]

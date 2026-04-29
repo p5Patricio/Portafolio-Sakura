@@ -34,10 +34,12 @@ import {
   SiOpencv,
   SiBoost,
   SiVercel,
+  SiNotion,
+  SiObsidian,
   SiClaude,
 } from 'react-icons/si'
 
-import { FaWindows, FaMicrochip, FaTerminal, FaRobot, FaBrain } from 'react-icons/fa6'
+import { FaWindows, FaMicrochip, FaTerminal, FaRobot, FaBrain, FaBolt, FaCloud } from 'react-icons/fa6'
 
 // ----- Tech ID registry -----
 //
@@ -95,6 +97,10 @@ export type TechId =
   | 'windows'
   | 'cloudflare'
   | 'vercel'
+  | 'neon'
+  | 'render'
+  | 'notion'
+  | 'obsidian'
   // AI dev tools (developer side)
   | 'claude-code'
   | 'antigravity'
@@ -140,6 +146,10 @@ export const TECH_LABELS: Record<TechId, string> = {
   windows: 'Windows',
   cloudflare: 'Cloudflare',
   vercel: 'Vercel',
+  neon: 'Neon',
+  render: 'Render',
+  notion: 'Notion',
+  obsidian: 'Obsidian',
   'claude-code': 'Claude Code',
   antigravity: 'Antigravity',
   'kimi-code': 'Kimi Code',
@@ -186,6 +196,10 @@ const ICONS: Record<TechId, IconComponent> = {
   windows: FaWindows,
   cloudflare: SiCloudflare,
   vercel: SiVercel,
+  neon: FaBolt,
+  render: FaCloud,
+  notion: SiNotion,
+  obsidian: SiObsidian,
   // No brand assets exist for these AI tools — use semantic generics that
   // visually read as "AI / agentic":
   'claude-code': SiAnthropic,
