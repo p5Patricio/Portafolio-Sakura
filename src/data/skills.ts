@@ -48,8 +48,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'LLMs en producción, machine learning y desarrollo con agentes.',
       en: 'Production LLMs, machine learning and agent-powered development.',
     },
-    skills: ['gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy', 'claude-code', 'antigravity', 'kimi-code', 'gentle-ai'],
-    highlight: 'gemini',
+    skills: ['claude-code', 'antigravity', 'kimi-code', 'gentle-ai', 'stitch', 'gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
+    highlight: 'claude-code',
   },
   {
     id: 'devops',

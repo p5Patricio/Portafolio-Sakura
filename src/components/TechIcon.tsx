@@ -17,6 +17,7 @@ import {
   SiSqlalchemy,
   SiPostgresql,
   SiGooglegemini,
+  SiGoogle,
   SiOpenai,
   SiAnthropic,
   SiOllama,
@@ -89,6 +90,7 @@ export type TechId =
   | 'openai'
   | 'anthropic'
   | 'ollama'
+  | 'stitch'
   // DevOps / tooling
   | 'docker'
   | 'git'
@@ -139,6 +141,7 @@ export const TECH_LABELS: Record<TechId, string> = {
   openai: 'OpenAI',
   anthropic: 'Claude (Anthropic)',
   ollama: 'Ollama',
+  stitch: 'Stitch',
   docker: 'Docker',
   git: 'Git',
   github: 'GitHub',
@@ -189,6 +192,7 @@ const ICONS: Record<TechId, IconComponent> = {
   openai: SiOpenai,
   anthropic: SiClaude,
   ollama: SiOllama,
+  stitch: SiGoogle,
   docker: SiDocker,
   git: SiGit,
   github: SiGithub,
