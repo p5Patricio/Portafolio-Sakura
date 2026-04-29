@@ -25,7 +25,7 @@ function Logo({ className = 'w-10 h-10', alt = 'Logo personal' }: Props) {
 
   return (
     <img
-      src="/logo.png"
+      src="/LogoDark.svg"
       alt={alt}
       onError={() => setErrored(true)}
       className={`${className} object-contain select-none shrink-0`}
