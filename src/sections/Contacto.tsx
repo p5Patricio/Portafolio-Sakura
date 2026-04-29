@@ -1,5 +1,5 @@
-import { useState, type FormEvent, type ReactNode, type SVGProps } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState, type FormEvent, type ReactNode, type SVGProps } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, MapPin, Send, Copy, ExternalLink, Check } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SakuraIcon from '../components/SakuraIcon'
@@ -112,10 +112,21 @@ const inputClass =
 // ---------- Section ----------
 
 function Contacto() {
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  })
+
+  const bgY       = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const bgScale   = useTransform(scrollYProgress, [0, 1], [1, 1.12])
+  const bgOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0])
+
   const { t } = useLanguage()
   const c = t.contacto
 
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [copied, setCopied] = useState(false)
 
   const copyEmail = async () => {
@@ -132,16 +143,39 @@ function Contacto() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((prev) => ({ ...prev, [key]: e.target.value }))
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // View-only form — submission will be wired up later (EmailJS, Formspree, etc.)
+    setStatus('sending')
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        setForm({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
     <section
+      ref={ref}
       id="contacto"
-      className="relative bg-color-papel px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
+      className="relative min-h-[120vh] overflow-hidden"
     >
+      <motion.div
+        style={{ y: bgY, scale: bgScale, opacity: bgOpacity }}
+        className="absolute inset-0 bg-[url('/src/assets/Contacto-Phone.webp')] md:bg-[url('/src/assets/Contacto-Desktop.webp')] bg-cover bg-center will-change-transform"
+      />
+      <div className="relative z-10 px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center">
       {/* Title + hanko */}
       <div className="relative flex items-start justify-center gap-4 md:gap-6">
         <motion.h2
@@ -309,10 +343,10 @@ function Contacto() {
             <div className="relative inline-block">
               <BrushButton
                 type="submit"
-                disabled={true}
-                ariaLabel={`${c.form.submit} — ${c.form.disabledHint}`}
+                disabled={status === 'sending' || status === 'success'}
+                ariaLabel={status === 'sending' ? c.form.sending : c.form.submit}
               >
-                {c.form.submit}
+                {status === 'sending' ? c.form.sending : c.form.submit}
               </BrushButton>
               {/* Sakura accent floating on the top-right corner of the button */}
               <SakuraIcon
@@ -320,12 +354,21 @@ function Contacto() {
                 className="absolute -top-1 -right-2 w-4 h-4 text-color-sakura pointer-events-none drop-shadow-sm"
               />
             </div>
-            <p className="text-xs text-color-tinta/60 text-center lg:text-left max-w-xs">
-              {c.form.disabledHint}
-            </p>
+            {status === 'success' && (
+              <p className="text-xs text-green-700 text-center lg:text-left max-w-xs">
+                {c.form.success}
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="text-xs text-color-sakura text-center lg:text-left max-w-xs">
+                {c.form.error}
+              </p>
+            )}
           </div>
         </form>
       </div>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-color-papel via-color-papel/80 to-transparent z-20 pointer-events-none" />
     </section>
   )
 }
