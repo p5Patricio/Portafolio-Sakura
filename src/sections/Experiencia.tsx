@@ -179,10 +179,15 @@ function Experiencia() {
   return (
     <section
       id="experiencia"
-      className="relative bg-color-papel px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
+      className="relative min-h-screen px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
     >
-      {/* Title + hanko */}
-      <div className="relative flex items-start justify-center gap-4 md:gap-6">
+      {/* Background image */}
+      <div className="absolute inset-0 bg-[url('/src/assets/scroll-03-hanami.png')] bg-cover bg-center bg-no-repeat" />
+
+      {/* Content wrapper */}
+      <div className="relative z-10 w-full flex flex-col items-center">
+        {/* Title + hanko */}
+        <div className="relative flex items-start justify-center gap-4 md:gap-6">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -267,6 +272,7 @@ function Experiencia() {
         <SakuraIcon className="w-3 h-3 text-color-sakura" />
         <span className="h-px w-10 bg-color-sakura/60" />
       </div>
+      </div>{/* end content wrapper */}
     </section>
   )
 }

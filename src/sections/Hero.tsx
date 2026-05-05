@@ -10,9 +10,6 @@ function Hero() {
     offset: ['start start', 'end start'],
   })
 
-  const bgY       = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const bgScale   = useTransform(scrollYProgress, [0, 1], [1, 1.12])
-  const bgOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0])
   const contentY  = useTransform(scrollYProgress, [0, 1], ['0%', '-15%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
@@ -22,9 +19,9 @@ function Hero() {
       id="inicio"
       className="relative min-h-[120vh] overflow-hidden"
     >
-      <motion.div
-        style={{ y: bgY, scale: bgScale, opacity: bgOpacity }}
-        className="absolute inset-0 bg-[url('/src/assets/bg-mobile.webp')] md:bg-[url('/src/assets/bg-desktop.webp')] bg-cover bg-center will-change-transform"
+      {/* Static background — no parallax so the image is never cropped by movement */}
+      <div
+        className="absolute inset-0 bg-[url('/src/assets/bg-mobile.webp')] md:bg-[url('/src/assets/scroll-01-hero.png')] bg-cover bg-center"
       />
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
@@ -33,7 +30,7 @@ function Hero() {
         <BrushText />
         <HeroQuote />
       </motion.div>
-      <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-color-papel via-color-papel/80 to-transparent z-20 pointer-events-none" />
+      {/* No gradient — seamless transition to next section */}
     </section>
   )
 }
