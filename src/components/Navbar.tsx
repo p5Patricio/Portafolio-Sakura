@@ -6,10 +6,10 @@ import { useLanguage } from '../context/LanguageContext'
 
 const linkDefs = [
   { id: 'inicio',      href: '#inicio',      labelKey: 'inicio' },
-  { id: 'sobre-mi',    href: '#sobre-mi',    labelKey: 'sobreMi' },
   { id: 'experiencia', href: '#experiencia', labelKey: 'experiencia' },
   { id: 'proyectos',   href: '#proyectos',   labelKey: 'proyectos' },
   { id: 'habilidades', href: '#habilidades', labelKey: 'habilidades' },
+  { id: 'sobre-mi',    href: '#sobre-mi',    labelKey: 'sobreMi' },
   { id: 'contacto',    href: '#contacto',    labelKey: 'contacto' },
 ] as const
 
@@ -44,7 +44,7 @@ function useActiveSection(): string {
 // consistent (same height, blur, border, shadow). Height is fixed so the brand,
 // nav links, and language selector all line up perfectly.
 const CAPSULE =
-  'h-12 rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]'
+  'h-12 rounded-full bg-color-papel/40 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]'
 
 function Navbar() {
   const active = useActiveSection()
@@ -64,10 +64,12 @@ function Navbar() {
         transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
         aria-label={t.brand.title}
       >
-        <Logo
-          alt={t.brand.title}
-          className="h-9 w-auto transition-transform duration-300 group-hover:scale-110"
-        />
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black">
+          <Logo
+            alt={t.brand.title}
+            className="h-8 w-auto transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
         <div className="leading-tight">
           <p className="font-bold text-color-tinta tracking-[0.2em] text-sm">
             {t.brand.title}

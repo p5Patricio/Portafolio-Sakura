@@ -4,7 +4,7 @@ const PETAL_COUNT = 24
 
 // Border-radius variations that produce recognisably different petal silhouettes
 const SHAPES = [
-  '150% 0 150% 0',     // classic sakura (current)
+  '150% 0 150% 0',     // classic sakura
   '0 150% 0 150%',     // mirrored classic
   '100% 0 100% 100%',  // rounder, teardrop-like
   '0 100% 100% 100%',  // teardrop flipped
@@ -12,15 +12,40 @@ const SHAPES = [
   '40% 120% 40% 120%', // softer mirrored
 ] as const
 
-// Pink gradients from pale to deep — all within the sakura palette
+// Pink gradients matched to the background image sakura tone (#E8A4B8)
 const TONES = [
-  'radial-gradient(ellipse at 30% 30%, #f5cfd1 0%, #e8a4aa 55%, #c95b64 100%)',          // classic
-  'radial-gradient(ellipse at 30% 30%, #fce4ec 0%, #f8bbd0 55%, #f48fb1 100%)',          // pale pink
-  'radial-gradient(ellipse at 30% 30%, #f8bbd0 0%, #f06292 55%, #c95b64 100%)',          // deep rose
-  'radial-gradient(ellipse at 30% 30%, #fff5f7 0%, #f5cfd1 55%, #e8a4aa 100%)',          // white-pink
-  'radial-gradient(ellipse at 30% 30%, #f5e6e8 0%, #d48c94 55%, #a84852 100%)',          // dusty rose
-  'radial-gradient(ellipse at 30% 30%, #fce8ea 0%, #e8a4aa 55%, #d4757d 100%)',          // warm pink
+  'radial-gradient(ellipse at 30% 30%, #fce8ec 0%, #f5cfd6 55%, #e8a4b8 100%)',   // pale → image tone
+  'radial-gradient(ellipse at 30% 30%, #fff0f3 0%, #f8d0d8 55%, #e8a4b8 100%)',   // white-pink
+  'radial-gradient(ellipse at 30% 30%, #f8d0d8 0%, #e8a4b8 55%, #d4809e 100%)',   // image tone → deeper
+  'radial-gradient(ellipse at 30% 30%, #fce4ea 0%, #f0b8c8 55%, #e8a4b8 100%)',   // warm pink
+  'radial-gradient(ellipse at 30% 30%, #f5e6e8 0%, #e8a4b8 55%, #c97b8f 100%)',   // dusty rose
+  'radial-gradient(ellipse at 30% 30%, #fce8ea 0%, #f0c2d0 55%, #d4a4b0 100%)',   // soft pink
 ] as const
+
+// Flower SVG — 5-petal blossom with centre (used as data-uri background)
+function flowerSvg(): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <defs>
+      <radialGradient id="f" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fce8ec"/>
+        <stop offset="55%" stop-color="#e8a4b8"/>
+        <stop offset="100%" stop-color="#c97b8f"/>
+      </radialGradient>
+    </defs>
+    <g fill="url(#f)">
+      <ellipse cx="16" cy="7" rx="4.5" ry="7.5"/>
+      <ellipse cx="16" cy="7" rx="4.5" ry="7.5" transform="rotate(72 16 16)"/>
+      <ellipse cx="16" cy="7" rx="4.5" ry="7.5" transform="rotate(144 16 16)"/>
+      <ellipse cx="16" cy="7" rx="4.5" ry="7.5" transform="rotate(216 16 16)"/>
+      <ellipse cx="16" cy="7" rx="4.5" ry="7.5" transform="rotate(288 16 16)"/>
+    </g>
+    <circle cx="16" cy="16" r="2.8" fill="#c95b64" opacity="0.85"/>
+    <circle cx="16" cy="16" r="1.4" fill="#f5cfd6" opacity="0.9"/>
+  </svg>`
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+}
+
+const FLOWER_TONES = TONES.map(() => flowerSvg())
 
 type Petal = {
   id: number
@@ -31,8 +56,10 @@ type Petal = {
   opacity: number
   shape: (typeof SHAPES)[number]
   tone: (typeof TONES)[number]
-  drift: number    // horizontal drift distance (px)
-  sway: number     // rotation amplitude (deg)
+  flowerTone: string
+  isFlower: boolean
+  drift: number
+  sway: number
 }
 
 // Deterministic pseudo-random generator so petal values are stable across renders
@@ -44,18 +71,25 @@ function seededRandom(seed: number) {
 function SakuraPetals() {
   const petals: Petal[] = useMemo(
     () =>
-      Array.from({ length: PETAL_COUNT }, (_, i) => ({
-        id: i,
-        left: seededRandom(i) * 100,
-        size: 8 + seededRandom(i + 100) * 12,
-        duration: 10 + seededRandom(i + 200) * 10,
-        delay: -seededRandom(i + 300) * 18,
-        opacity: 0.45 + seededRandom(i + 400) * 0.4,
-        shape: SHAPES[Math.floor(seededRandom(i + 500) * SHAPES.length)],
-        tone: TONES[Math.floor(seededRandom(i + 600) * TONES.length)],
-        drift: 30 + seededRandom(i + 700) * 50,
-        sway: 360 + seededRandom(i + 800) * 720,
-      })),
+      Array.from({ length: PETAL_COUNT }, (_, i) => {
+        const isFlower = seededRandom(i + 900) < 0.25 // 25% flowers
+        return {
+          id: i,
+          left: seededRandom(i) * 100,
+          size: isFlower
+            ? 14 + seededRandom(i + 100) * 10   // flowers slightly larger
+            : 8 + seededRandom(i + 100) * 12,
+          duration: 10 + seededRandom(i + 200) * 10,
+          delay: -seededRandom(i + 300) * 18,
+          opacity: 0.45 + seededRandom(i + 400) * 0.4,
+          shape: SHAPES[Math.floor(seededRandom(i + 500) * SHAPES.length)],
+          tone: TONES[Math.floor(seededRandom(i + 600) * TONES.length)],
+          flowerTone: FLOWER_TONES[Math.floor(seededRandom(i + 600) * FLOWER_TONES.length)],
+          isFlower,
+          drift: 30 + seededRandom(i + 700) * 50,
+          sway: 360 + seededRandom(i + 800) * 720,
+        }
+      }),
     [],
   )
 
@@ -75,8 +109,11 @@ function SakuraPetals() {
             animationDuration: `${p.duration}s`,
             animationDelay: `${p.delay}s`,
             opacity: p.opacity,
-            borderRadius: p.shape,
-            background: p.tone,
+            borderRadius: p.isFlower ? '50%' : p.shape,
+            background: p.isFlower ? p.flowerTone : p.tone,
+            backgroundSize: p.isFlower ? 'contain' : undefined,
+            backgroundRepeat: p.isFlower ? 'no-repeat' : undefined,
+            backgroundPosition: p.isFlower ? 'center' : undefined,
             // Each petal gets its own drift distance and rotation via custom properties
             // consumed by the keyframes in CSS
             '--petal-drift': `${p.drift}px`,

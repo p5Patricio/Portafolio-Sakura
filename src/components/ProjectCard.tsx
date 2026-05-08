@@ -6,7 +6,7 @@ import type { Lang } from '../data/translations'
 import ProjectCarousel from './ProjectCarousel'
 import TechIcon from './TechIcon'
 import SakuraIcon from './SakuraIcon'
-import BrushButton from './BrushButton'
+import PillButton from './PillButton'
 
 type Props = {
   repo: Repo
@@ -79,12 +79,13 @@ function ProjectCard({ repo, lang, viewProjectLabel, index = 0 }: Props) {
 
         {/* CTA row — pushes to the bottom of the card */}
         <div className="flex flex-col sm:flex-row items-center gap-3 mt-auto">
-          <BrushButton
+          <PillButton
             href={primaryUrl}
             ariaLabel={`${viewProjectLabel}: ${repo.name}`}
           >
             {viewProjectLabel}
-          </BrushButton>
+            <ExternalLink className="w-3.5 h-3.5" strokeWidth={2} />
+          </PillButton>
 
           {/* Secondary GitHub link — only when public AND there's a live URL
               (so we don't show two buttons pointing to the same repo). */}

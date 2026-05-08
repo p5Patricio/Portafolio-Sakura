@@ -1,10 +1,10 @@
 import { useRef, useState, type FormEvent, type ReactNode, type SVGProps } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Mail, MapPin, Send, Copy, ExternalLink, Check } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SakuraIcon from '../components/SakuraIcon'
 import HankoStamp from '../components/HankoStamp'
-import BrushButton from '../components/BrushButton'
+import PillButton from '../components/PillButton'
 
 // ---------- Brand icons (not available in lucide-react) ----------
 
@@ -39,7 +39,7 @@ type InfoRowProps = {
 
 function InfoRow({ icon: Icon, label, value, href, onClick, actionIcon: ActionIcon }: InfoRowProps) {
   const content = (
-    <div className="flex items-center gap-5 group bg-color-papel/70 rounded-xl p-4">
+    <div className="flex items-center gap-5 group bg-color-papel/50 rounded-xl p-4">
       <span className="flex-shrink-0 w-12 h-12 rounded-full bg-color-tinta flex items-center justify-center text-color-papel shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] transition-transform duration-300 group-hover:scale-[1.05]">
         <Icon className="w-5 h-5" strokeWidth={1.8} />
       </span>
@@ -113,15 +113,6 @@ const inputClass =
 
 function Contacto() {
   const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
-
-  const bgY       = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const bgScale   = useTransform(scrollYProgress, [0, 1], [1, 1.12])
-  const bgOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0])
-
   const { t } = useLanguage()
   const c = t.contacto
 
@@ -169,13 +160,11 @@ function Contacto() {
     <section
       ref={ref}
       id="contacto"
-      className="relative overflow-hidden pb-[40vh]"
+      className="relative z-10 overflow-hidden pb-[40vh]"
     >
-      <motion.div
-        style={{ y: bgY, scale: bgScale, opacity: bgOpacity }}
-        className="absolute inset-0 bg-color-papel bg-[url('/src/assets/Contacto-Phone.webp')] md:bg-[url('/src/assets/Contacto-Desktop.webp')] bg-cover md:bg-contain bg-center bg-no-repeat will-change-transform"
-      />
-      <div className="relative z-10 px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center">
+      {/* Mobile-only background — desktop uses ScrollBackground */}
+      <div className="absolute inset-0 md:hidden bg-color-papel" />
+      <div className="relative z-10 px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center">
       {/* Title + hanko */}
       <div className="relative flex items-start justify-center gap-4 md:gap-6">
         <motion.h2
@@ -207,7 +196,7 @@ function Contacto() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed flex flex-col"
+        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed flex flex-col bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
       >
         {c.intro.map((line, i) => (
           <span key={i}>{line}</span>
@@ -282,7 +271,7 @@ function Contacto() {
         </div>
 
         {/* Form column */}
-        <div className="bg-color-papel/70 rounded-xl p-6">
+        <div className="bg-color-papel/50 rounded-xl p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Field id="contact-name" label={c.form.nameLabel}>
@@ -342,13 +331,17 @@ function Contacto() {
 
           <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
             <div className="relative inline-block">
-              <BrushButton
+              <PillButton
                 type="submit"
                 disabled={status === 'sending' || status === 'success'}
                 ariaLabel={status === 'sending' ? c.form.sending : c.form.submit}
               >
-                {status === 'sending' ? c.form.sending : c.form.submit}
-              </BrushButton>
+                <span>{status === 'sending' ? c.form.sending : c.form.submit}</span>
+                <Send
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                  strokeWidth={2}
+                />
+              </PillButton>
               {/* Sakura accent floating on the top-right corner of the button */}
               <SakuraIcon
                 aria-hidden="true"

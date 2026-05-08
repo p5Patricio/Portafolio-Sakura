@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { FEATURED_REPOS } from '../data/repos'
 import SakuraIcon from '../components/SakuraIcon'
 import HankoStamp from '../components/HankoStamp'
+import PillButton from '../components/PillButton'
 import ProjectCard from '../components/ProjectCard'
 
 function Proyectos() {
@@ -13,10 +13,10 @@ function Proyectos() {
   return (
     <section
       id="proyectos"
-      className="relative min-h-screen px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
+      className="relative z-10 min-h-screen px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
     >
-      {/* Background image */}
-      <div className="absolute inset-0 bg-[url('/src/assets/scroll-04-koi.png')] bg-cover bg-center bg-no-repeat" />
+      {/* Mobile-only background — desktop uses ScrollBackground */}
+      <div className="absolute inset-0 md:hidden bg-color-papel" />
 
       {/* Content wrapper */}
       <div className="relative z-10 w-full flex flex-col items-center">
@@ -64,7 +64,7 @@ function Proyectos() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed"
+        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
       >
         {t.proyectos.intro}
       </motion.p>
@@ -90,16 +90,13 @@ function Proyectos() {
         transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
         className="mt-14"
       >
-        <Link
-          to="/galeria"
-          className="group inline-flex items-center gap-3 rounded-full bg-color-tinta text-color-papel px-7 py-3 text-xs uppercase tracking-[0.3em] font-semibold shadow-[0_8px_24px_-10px_rgba(26,26,26,0.5)] hover:shadow-[0_12px_30px_-12px_rgba(26,26,26,0.55)] transition-shadow"
-        >
+        <PillButton to="/galeria">
           <span>{t.proyectos.viewAll}</span>
           <ArrowRight
             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
             strokeWidth={2}
           />
-        </Link>
+        </PillButton>
       </motion.div>
 
       {/* Bottom sakura ornament */}

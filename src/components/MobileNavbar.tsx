@@ -20,13 +20,13 @@ type NavItem = {
 
 // Order MUST mirror HomePage's section order so that the IntersectionObserver
 // active state lines up with what the user sees on screen.
-//   Inicio → Sobre mí → Experiencia → Proyectos → Habilidades → Contacto
+//   Inicio → Experiencia → Proyectos → Habilidades → Sobre mí → Contacto
 const items: NavItem[] = [
   { id: 'inicio',      href: '#inicio',      icon: Home,       labelKey: 'inicio' },
-  { id: 'sobre-mi',    href: '#sobre-mi',    icon: User,       labelKey: 'sobreMi' },
   { id: 'experiencia', href: '#experiencia', icon: Briefcase,  labelKey: 'experiencia' },
   { id: 'proyectos',   href: '#proyectos',   icon: FolderGit2, labelKey: 'proyectos' },
   { id: 'habilidades', href: '#habilidades', icon: Sparkles,   labelKey: 'habilidades' },
+  { id: 'sobre-mi',    href: '#sobre-mi',    icon: User,       labelKey: 'sobreMi' },
   { id: 'contacto',    href: '#contacto',    icon: Mail,       labelKey: 'contacto' },
 ]
 
@@ -69,7 +69,7 @@ function MobileNavbar() {
       transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
       aria-label="Mobile navigation"
     >
-      <ul className="flex items-center gap-1 px-3 py-2 rounded-full bg-color-papel/70 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-10px_rgba(26,26,26,0.4)]">
+      <ul className="flex items-center gap-1 px-3 py-2 rounded-full bg-color-papel/40 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-10px_rgba(26,26,26,0.4)]">
         {items.map(({ id, href, icon: Icon, labelKey }) => {
           const isActive = active === id
           const label = t.nav[labelKey]

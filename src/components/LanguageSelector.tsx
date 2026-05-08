@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Languages } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import type { Lang } from '../data/translations'
 
@@ -45,11 +46,39 @@ function LanguageSelector({
   const styles = SIZE_STYLES[size]
   const showIconResolved = showIcon ?? size === 'lg'
 
+  const containerRef = useRef<HTMLDivElement>(null)
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const [pillRect, setPillRect] = useState({ left: 0, width: 0 })
+
+  // Measure the active button relative to the container so the pill sits
+  // exactly on top of it. This avoids Framer Motion's layoutId bug with
+  // position:fixed parents + scroll, which causes the "bounce" artefact.
+  useEffect(() => {
+    function measure() {
+      const container = containerRef.current
+      const activeBtn = buttonRefs.current[OPTIONS.indexOf(lang)]
+      if (!container || !activeBtn) return
+
+      const containerRect = container.getBoundingClientRect()
+      const btnRect = activeBtn.getBoundingClientRect()
+
+      setPillRect({
+        left: btnRect.left - containerRect.left,
+        width: btnRect.width,
+      })
+    }
+
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [lang])
+
   return (
     <div
+      ref={containerRef}
       role="group"
       aria-label="Language selector"
-      className={`relative flex items-center rounded-full bg-color-papel/65 backdrop-blur-xl border border-color-tinta/20 shadow-[0_8px_24px_-10px_rgba(26,26,26,0.4)] ${styles.container}`}
+      className={`relative flex items-center rounded-full bg-color-papel/40 backdrop-blur-xl border border-color-tinta/20 shadow-[0_8px_24px_-10px_rgba(26,26,26,0.4)] ${styles.container}`}
     >
       {showIconResolved && (
         <Languages
@@ -58,6 +87,19 @@ function LanguageSelector({
           strokeWidth={1.7}
         />
       )}
+
+      {/* Single animated pill — positioned absolutely inside the container */}
+      <motion.div
+        key={layoutKey}
+        className="absolute top-1 bottom-1 rounded-full bg-color-tinta shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] pointer-events-none"
+        initial={false}
+        animate={{
+          left: pillRect.left,
+          width: pillRect.width,
+        }}
+        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+      />
+
       {OPTIONS.map((opt, i) => {
         const isActive = lang === opt
         return (
@@ -69,6 +111,7 @@ function LanguageSelector({
               />
             )}
             <button
+              ref={(el) => { buttonRefs.current[i] = el }}
               type="button"
               aria-pressed={isActive}
               onClick={() => setLang(opt)}
@@ -78,13 +121,6 @@ function LanguageSelector({
                   : 'text-color-tinta/65 hover:text-color-tinta'
               }`}
             >
-              {isActive && (
-                <motion.span
-                  layoutId={layoutKey}
-                  className="absolute inset-0 rounded-full bg-color-tinta shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)]"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
               <span className="relative z-10">{opt}</span>
             </button>
           </div>

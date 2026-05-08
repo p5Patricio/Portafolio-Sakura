@@ -1,4 +1,4 @@
-export type Lang = 'es' | 'en'
+﻿export type Lang = 'es' | 'en'
 
 type Word = { text: string; size: 'xs' | 'sm' | 'lg' | 'xl' }
 
@@ -28,11 +28,11 @@ type Dict = {
   }
   hero: {
     words: Word[]
-    quoteLine1: string
-    quoteLine2: string
+    stamp: string
   }
   sobreMi: {
     title: string
+    stamp: string
     para1: string
     para2: string
     values: Value[]
@@ -113,15 +113,15 @@ export const translations: Record<Lang, Dict> = {
         { text: 'de',        size: 'xs' },
         { text: 'Software',  size: 'xl' },
       ],
-      quoteLine1: 'Hay que dar un paso a la vez,',
-      quoteLine2: 'solo uno a la vez',
+      stamp: '私',
     },
     sobreMi: {
       title: 'Sobre mí',
+      stamp: '紹介',
       para1:
-        'Soy un ingeniero de software apasionado por la creación de soluciones tecnológicas que mejoren la vida de las personas. Me especializo en el desarrollo de aplicaciones web y disfruto convertir ideas en productos funcionales, escalables y eficientes.',
+        'Hola, soy Patricio García — mis amigos me dicen Pato. Soy ingeniero en sistemas computacionales y hoy en día estoy enfocado en el desarrollo de software. Me apasiona construir herramientas, entender cómo funcionan por dentro y simplificar flujos de trabajo complejos. Últimamente, la inteligencia artificial se ha convertido en un gran compañero de desarrollo: la veo como una herramienta extraordinaria que potencia enormemente lo que podemos crear en este ámbito.',
       para2:
-        'Me motiva aprender constantemente, trabajar en equipo y afrontar nuevos desafíos que me permitan crecer tanto personal como profesionalmente.',
+        'Fuera del código, los videojuegos son una de mis grandes pasiones, especialmente el ámbito competitivo. He alcanzado rangos respetables como Master en Overwatch y Diamante III en Rocket League.',
       values: [
         { title: 'Quién soy', description: 'Apasionado por la tecnología y el aprendizaje continuo.' },
         { title: 'Misión',    description: 'Crear soluciones que generen impacto y valor real.' },
@@ -141,7 +141,7 @@ export const translations: Record<Lang, Dict> = {
       title: 'Experiencia',
       stamp: '経験',
       intro:
-        'Cada paso del camino me ha permitido crecer como ingeniero y como persona. Estos son los hitos más significativos de mi recorrido académico y profesional.',
+        'Este es mi gran inicio. Mi carrera universitaria y mis prácticas profesionales fueron años de esfuerzo dedicado que me enseñaron el valor del compromiso y el aprendizaje constante. Hoy doy este primer paso con confianza, sabiendo que esto es solo el comienzo de un camino lleno de crecimiento y proyectos por construir.',
       placeholderImage: 'Imagen pendiente',
       items: [
         {
@@ -149,14 +149,14 @@ export const translations: Record<Lang, Dict> = {
           title: 'Graduación Universitaria',
           institution: 'Universidad de Guanajuato',
           description:
-            'Formación en ingeniería de software con énfasis en desarrollo web, algoritmos, estructuras de datos y arquitectura de sistemas. Participación en proyectos académicos de machine learning y visión por computadora.',
+            'Formación en ingeniería en sistemas computacionales con énfasis en desarrollo web, algoritmos, estructuras de datos y arquitectura de sistemas. Participación en proyectos académicos de machine learning y visión por computadora.',
         },
         {
-          period: '2025',
+          period: '2025 — 2026',
           title: 'Prácticas Profesionales',
           institution: 'Mazda Motor Manufacturing',
           description:
-            'Desarrollo de soluciones internas para automatización de procesos, colaboración en equipo multidisciplinario y aplicación de metodologías ágiles en un entorno industrial.',
+            'Desarrollo de un sistema de gestión de documentos para el área de IT que agilizó significativamente los procesos internos. Colaboración en equipo multidisciplinario y aplicación de metodologías ágiles en un entorno industrial.',
         },
       ],
     },
@@ -180,7 +180,7 @@ export const translations: Record<Lang, Dict> = {
       intro: [
         '¿Tienes alguna idea o proyecto en mente?',
         'Estoy siempre abierto a nuevas oportunidades,',
-        'colaboraciones o simplemente a charlar sobre tecnología.',
+        'colaboraciones o simplemente a charlar.',
         '¡Hablemos!',
       ],
       info: {
@@ -225,15 +225,15 @@ export const translations: Record<Lang, Dict> = {
         { text: 'Software', size: 'xl' },
         { text: 'Engineer', size: 'xl' },
       ],
-      quoteLine1: 'One step at a time,',
-      quoteLine2: 'only one at a time',
+      stamp: '私',
     },
     sobreMi: {
       title: 'About me',
+      stamp: '紹介',
       para1:
-        'I am a software engineer passionate about building technology that improves people’s lives. I specialize in web application development and enjoy turning ideas into functional, scalable and efficient products.',
+        "Hi, I'm Patricio García — friends call me Pato. I'm a Computer Systems Engineer currently focused on software development. I'm passionate about building tools, understanding how things work under the hood, and simplifying complex workflows. Lately, artificial intelligence has become a great development companion: I see it as an extraordinary tool that tremendously amplifies what we can create in this field.",
       para2:
-        'I am driven by continuous learning, teamwork, and embracing new challenges that help me grow both personally and professionally.',
+        'Outside of code, video games are one of my greatest passions, especially the competitive scene. I have reached respectable ranks such as Master in Overwatch and Diamond III in Rocket League.',
       values: [
         { title: 'Who I am', description: 'Passionate about technology and continuous learning.' },
         { title: 'Mission',  description: 'Build solutions that create real impact and value.' },
@@ -253,7 +253,7 @@ export const translations: Record<Lang, Dict> = {
       title: 'Experience',
       stamp: '経験',
       intro:
-        'Every step along the way has shaped me as an engineer and as a person. These are the most meaningful milestones of my academic and professional journey.',
+        'This is my great beginning. My university studies and professional internship were years of dedicated effort that taught me the value of commitment and continuous learning. Today I take this first step with confidence, knowing this is only the beginning of a path full of growth and projects yet to build.',
       placeholderImage: 'Image pending',
       items: [
         {
@@ -261,14 +261,14 @@ export const translations: Record<Lang, Dict> = {
           title: 'University Graduation',
           institution: 'Universidad de Guanajuato',
           description:
-            'Software engineering education with emphasis on web development, algorithms, data structures, and systems architecture. Participation in academic projects involving machine learning and computer vision.',
+            'Computer Systems Engineering education with emphasis on web development, algorithms, data structures, and systems architecture. Participation in academic projects involving machine learning and computer vision.',
         },
         {
-          period: '2025',
+          period: '2025 — 2026',
           title: 'Internship',
           institution: 'Mazda Motor Manufacturing',
           description:
-            'Development of internal solutions for process automation, collaboration within a multidisciplinary team, and application of agile methodologies in an industrial environment.',
+            'Development of a document management system for the IT department that significantly streamlined internal processes. Collaboration within a multidisciplinary team and application of agile methodologies in an industrial environment.',
         },
       ],
     },
@@ -292,7 +292,7 @@ export const translations: Record<Lang, Dict> = {
       intro: [
         'Do you have an idea or project in mind?',
         'I am always open to new opportunities,',
-        'collaborations or simply a good conversation about technology.',
+        'collaborations or simply a good conversation.',
         'Let’s talk!',
       ],
       info: {

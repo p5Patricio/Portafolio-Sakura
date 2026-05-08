@@ -18,7 +18,7 @@ type SkillChipProps = {
 function SkillChip({ id, highlighted }: SkillChipProps) {
   return (
     <li
-      className={`group relative flex flex-col items-center gap-2 px-3 py-3 sm:px-4 sm:py-4 rounded-xl bg-color-papel border border-color-tinta/10 hover:border-color-sakura/40 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_-8px_rgba(26,26,26,0.25)] hover:shadow-[0_8px_20px_-10px_rgba(201,91,100,0.3)]`}
+      className={`group relative flex flex-col items-center gap-2 px-3 py-3 sm:px-4 sm:py-4 rounded-xl bg-color-papel/60 backdrop-blur-md border border-color-tinta/10 hover:border-color-sakura/40 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_12px_-8px_rgba(26,26,26,0.25)] hover:shadow-[0_8px_20px_-10px_rgba(201,91,100,0.3)]`}
     >
       <TechIcon
         id={id}
@@ -93,8 +93,10 @@ function Habilidades() {
   return (
     <section
       id="habilidades"
-      className="relative bg-color-papel px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
+      className="relative z-10 px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
     >
+      {/* Mobile-only background — desktop uses ScrollBackground */}
+      <div className="absolute inset-0 md:hidden bg-color-papel" />
       {/* Title + hanko */}
       <div className="relative flex items-start justify-center gap-4 md:gap-6">
         <motion.h2
@@ -139,7 +141,7 @@ function Habilidades() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed"
+        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
       >
         {h.intro}
       </motion.p>

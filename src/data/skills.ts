@@ -48,7 +48,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'LLMs en producción, machine learning y desarrollo con agentes.',
       en: 'Production LLMs, machine learning and agent-powered development.',
     },
-    skills: ['claude-code', 'antigravity', 'kimi-code', 'openclaw', 'gemini', 'openai', 'anthropic', 'ollama', 'whisper', 'opencv', 'tensorflow', 'scikit', 'pandas', 'numpy'],
+    skills: ['claude-code', 'antigravity', 'kimi-code', 'openclaw', 'gemini', 'openai', 'ollama', 'whisper', 'opencv', 'tensorflow', 'pandas', 'numpy'],
     highlight: 'claude-code',
   },
   {
@@ -58,7 +58,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       es: 'Containers, despliegues y flujo diario.',
       en: 'Containers, deployments and daily workflow.',
     },
-    skills: ['github', 'git', 'docker', 'linux', 'windows', 'cloudflare', 'vercel', 'render', 'notion', 'obsidian'],
+    skills: ['github', 'git', 'docker', 'linux', 'cloudflare', 'vercel', 'render', 'notion', 'obsidian'],
     highlight: 'github',
   },
 ]

@@ -4,6 +4,7 @@ import Experiencia from '../sections/Experiencia'
 import Proyectos from '../sections/Proyectos'
 import Habilidades from '../sections/Habilidades'
 import Contacto from '../sections/Contacto'
+import ScrollBackground from '../components/ScrollBackground'
 
 /**
  * Single-page home — every section in the original order from the design
@@ -15,14 +16,14 @@ import Contacto from '../sections/Contacto'
  */
 function HomePage() {
   return (
-    <>
+    <ScrollBackground>
       <Hero />
-      <SobreMi />
       <Experiencia />
       <Proyectos />
       <Habilidades />
+      <SobreMi />
       <Contacto />
-    </>
+    </ScrollBackground>
   )
 }
 

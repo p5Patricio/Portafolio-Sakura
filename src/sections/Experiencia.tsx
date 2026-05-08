@@ -22,12 +22,12 @@ const ENTRIES: TimelineEntry[] = [
   {
     id: 'universidad',
     icon: GraduationCap,
-    image: null, // TODO: agregar imagen de graduación universidad
+    image: '/ugto.png',
   },
   {
     id: 'mazda',
     icon: Briefcase,
-    image: null, // TODO: agregar imagen de prácticas Mazda
+    image: '/mazda.png',
   },
 ]
 
@@ -37,10 +37,11 @@ type ImageSlotProps = {
   src: string | null
   alt: string
   placeholderLabel: string
+  position?: string
 }
 
 /** Empty / filled image window styled like a sumi-e paper frame. */
-function ImageSlot({ src, alt, placeholderLabel }: ImageSlotProps) {
+function ImageSlot({ src, alt, placeholderLabel, position = 'center' }: ImageSlotProps) {
   return (
     <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden bg-color-papel border border-color-tinta/15 shadow-[0_8px_24px_-12px_rgba(26,26,26,0.4)]">
       {/* Inner washi-paper border */}
@@ -50,7 +51,8 @@ function ImageSlot({ src, alt, placeholderLabel }: ImageSlotProps) {
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain p-3"
+          style={{ objectPosition: position }}
           loading="lazy"
         />
       ) : (
@@ -87,6 +89,7 @@ type TimelineCardProps = {
   image: string | null
   imageAlt: string
   placeholderLabel: string
+  imagePosition?: string
 }
 
 function TimelineCard({
@@ -100,6 +103,7 @@ function TimelineCard({
   image,
   imageAlt,
   placeholderLabel,
+  imagePosition,
 }: TimelineCardProps) {
   // Mobile: card always on the right of the spine. Desktop: alternates.
   const desktopOrder =
@@ -113,45 +117,48 @@ function TimelineCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: 'easeOut' }}
-      className={`relative flex flex-col gap-6 ${desktopOrder} lg:items-center lg:gap-0`}
+      className={`relative flex flex-col gap-6 ${desktopOrder} lg:flex-row lg:items-stretch lg:gap-8`}
     >
       {/* ---------- Card content ---------- */}
       <div
-        className={`relative w-full lg:w-[44%] pl-16 lg:pl-0 ${
-          align === 'left' ? 'lg:pr-14 lg:text-right' : 'lg:pl-14 lg:text-left'
+        className={`relative w-full lg:w-[46%] pl-16 lg:pl-0 ${
+          align === 'left' ? 'lg:pr-10 lg:text-right' : 'lg:pl-10 lg:text-left'
         }`}
       >
-        {/* Period brush label */}
-        <span className="inline-block text-xs uppercase tracking-[0.4em] text-color-sakura font-semibold mb-3">
-          {period}
-        </span>
+        <div className="bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-5 h-full flex flex-col justify-center">
+          {/* Period brush label */}
+          <span className="inline-block text-sm md:text-base uppercase tracking-[0.4em] text-color-sakura font-semibold mb-3">
+            {period}
+          </span>
 
-        {/* Title */}
-        <h3 className="font-brush text-2xl md:text-3xl lg:text-4xl text-color-tinta uppercase leading-tight tracking-wide">
-          {title}
-        </h3>
+          {/* Title */}
+          <h3 className="font-brush text-2xl md:text-3xl lg:text-4xl text-color-tinta uppercase leading-tight tracking-wide">
+            {title}
+          </h3>
 
-        {/* Institution */}
-        <p className="mt-2 text-sm text-color-tinta/70 italic">
-          {institution}
-        </p>
+          {/* Institution */}
+          <p className="mt-2 text-sm text-color-tinta/70 italic">
+            {institution}
+          </p>
 
-        {/* Description */}
-        <p className="mt-4 text-color-tinta/80 leading-relaxed text-sm md:text-base">
-          {description}
-        </p>
+          {/* Description */}
+          <p className="mt-4 text-color-tinta/80 leading-relaxed text-sm md:text-base">
+            {description}
+          </p>
+        </div>
       </div>
 
       {/* ---------- Image slot ---------- */}
       <div
-        className={`w-full lg:w-[44%] pl-16 lg:pl-0 ${
-          align === 'left' ? 'lg:pl-14' : 'lg:pr-14'
+        className={`w-full lg:w-[46%] pl-16 lg:pl-0 ${
+          align === 'left' ? 'lg:pl-10' : 'lg:pr-10'
         }`}
       >
         <ImageSlot
           src={image}
           alt={imageAlt}
           placeholderLabel={placeholderLabel}
+          position={imagePosition}
         />
       </div>
 
@@ -179,10 +186,11 @@ function Experiencia() {
   return (
     <section
       id="experiencia"
-      className="relative min-h-screen px-6 py-32 md:py-36 lg:py-40 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
+      className="relative z-10 min-h-screen px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
     >
       {/* Background image */}
-      <div className="absolute inset-0 bg-[url('/src/assets/scroll-03-hanami.png')] bg-cover bg-center bg-no-repeat" />
+      {/* Mobile-only background — desktop uses ScrollBackground */}
+      <div className="absolute inset-0 md:hidden bg-color-papel" />
 
       {/* Content wrapper */}
       <div className="relative z-10 w-full flex flex-col items-center">
@@ -230,7 +238,7 @@ function Experiencia() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed"
+        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
       >
         {e.intro}
       </motion.p>
@@ -260,6 +268,7 @@ function Experiencia() {
                 image={entry.image}
                 imageAlt={item.title}
                 placeholderLabel={e.placeholderImage}
+                imagePosition={entry.id === 'universidad' ? 'top' : 'center'}
               />
             )
           })}
