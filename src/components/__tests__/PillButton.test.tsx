@@ -1,0 +1,48 @@
+import { describe, it, expect, vi } from 'vitest'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { renderWithProviders } from '../../test-utils'
+import PillButton from '../PillButton'
+
+describe('PillButton', () => {
+  it('renders as external link when href is provided', () => {
+    renderWithProviders(
+      <PillButton href="https://example.com">Link</PillButton>
+    )
+    const link = screen.getByRole('link', { name: /link/i })
+    expect(link).toHaveAttribute('href', 'https://example.com')
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
+  it('renders as internal link when to is provided', () => {
+    renderWithProviders(
+      <PillButton to="/galeria">Galería</PillButton>
+    )
+    const link = screen.getByRole('link', { name: /galería/i })
+    expect(link).toHaveAttribute('href', '/galeria')
+  })
+
+  it('renders as button when type is provided', async () => {
+    const user = userEvent.setup()
+    const handleClick = vi.fn()
+    renderWithProviders(
+      <PillButton type="button" onClick={handleClick}>
+        Click me
+      </PillButton>
+    )
+    const btn = screen.getByRole('button', { name: /click me/i })
+    expect(btn).toBeInTheDocument()
+    await user.click(btn)
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
+
+  it('can be disabled', () => {
+    renderWithProviders(
+      <PillButton type="submit" disabled>
+        Submit
+      </PillButton>
+    )
+    expect(screen.getByRole('button')).toBeDisabled()
+  })
+})

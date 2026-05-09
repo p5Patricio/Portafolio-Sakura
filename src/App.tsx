@@ -1,10 +1,12 @@
 import './index.css'
+import { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import MobileNavbar from './components/MobileNavbar'
 import SakuraPetals from './components/SakuraPetals'
 import HomePage from './pages/HomePage'
-import GaleriaPage from './pages/GaleriaPage'
+
+const GaleriaPage = lazy(() => import('./pages/GaleriaPage'))
 
 function App() {
   const { pathname } = useLocation()
@@ -33,7 +35,14 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/galeria" element={<GaleriaPage />} />
+          <Route
+            path="/galeria"
+            element={
+              <Suspense fallback={null}>
+                <GaleriaPage />
+              </Suspense>
+            }
+          />
         </Routes>
       </main>
     </>

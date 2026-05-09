@@ -13,6 +13,18 @@
   --color-color-papel: #f4eee0;
   --color-color-sakura: #c95b64;
   --font-brush: "Edo SZ", "Brush Script MT", cursive;
+  --font-size-fluid-body: clamp(0.9375rem, 0.85rem + 0.3vw, 1.25rem);
+  --font-size-fluid-sm: clamp(0.8125rem, 0.75rem + 0.2vw, 1rem);
+}
+
+@utility text-fluid-body {
+  font-size: var(--font-size-fluid-body);
+  line-height: 1.75;
+}
+
+@utility text-fluid-sm {
+  font-size: var(--font-size-fluid-sm);
+  line-height: 1.7;
 }
 
 /* Tailwind v4 ships utilities inside @layer utilities. Unlayered rules win
@@ -46,6 +58,20 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ---------- Scroll-driven background (compositor-thread, zero jank) ----------
+   Chrome/Edge 115+ and Safari 18.2+ animate background-position-y directly
+   linked to document scroll. Falls back to the JS listener for older browsers. */
+@keyframes scroll-bg-move {
+  0%   { background-position-y: 0%; }
+  100% { background-position-y: 100%; }
+}
+
+.scroll-bg-driven {
+  animation: scroll-bg-move linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0% 100%;
 }
 
 @keyframes sakura-fall {

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Lock } from 'lucide-react'
+import { ExternalLink, Globe, Lock } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
 import type { Repo } from '../data/repos'
 import type { Lang } from '../data/translations'
@@ -11,17 +11,22 @@ import PillButton from './PillButton'
 type Props = {
   repo: Repo
   lang: Lang
-  /** Localized "View project" / "View all" button label. */
+  /** Localized "View project" button label. */
   viewProjectLabel: string
+  /** Localized "Visit site" button label. */
+  visitSiteLabel: string
   index?: number
 }
 
-function ProjectCard({ repo, lang, viewProjectLabel, index = 0 }: Props) {
+function ProjectCard({ repo, lang, viewProjectLabel, visitSiteLabel, index = 0 }: Props) {
   const subtitle = repo.subtitle[lang]
   const description = repo.description[lang]
   const images = repo.images ?? []
   // Prefer the live URL when available; otherwise the repo URL is the CTA.
+  const hasLiveUrl = !!repo.liveUrl
   const primaryUrl = repo.liveUrl ?? repo.repoUrl
+  const ctaLabel = hasLiveUrl ? visitSiteLabel : viewProjectLabel
+  const CtaIcon = hasLiveUrl ? Globe : ExternalLink
 
   return (
     <motion.article
@@ -54,7 +59,7 @@ function ProjectCard({ repo, lang, viewProjectLabel, index = 0 }: Props) {
         <p className="text-color-sakura text-sm tracking-wide italic">
           {subtitle}
         </p>
-        <p className="text-color-tinta/75 text-sm leading-relaxed max-w-[22rem]">
+        <p className="text-color-tinta/75 text-fluid-sm max-w-[22rem]">
           {description}
         </p>
 
@@ -81,15 +86,15 @@ function ProjectCard({ repo, lang, viewProjectLabel, index = 0 }: Props) {
         <div className="flex flex-col sm:flex-row items-center gap-3 mt-auto">
           <PillButton
             href={primaryUrl}
-            ariaLabel={`${viewProjectLabel}: ${repo.name}`}
+            ariaLabel={`${ctaLabel}: ${repo.name}`}
           >
-            {viewProjectLabel}
-            <ExternalLink className="w-3.5 h-3.5" strokeWidth={2} />
+            {ctaLabel}
+            <CtaIcon className="w-3.5 h-3.5" strokeWidth={2} />
           </PillButton>
 
           {/* Secondary GitHub link — only when public AND there's a live URL
               (so we don't show two buttons pointing to the same repo). */}
-          {!repo.isPrivate && repo.liveUrl && (
+          {!repo.isPrivate && hasLiveUrl && (
             <a
               href={repo.repoUrl}
               target="_blank"

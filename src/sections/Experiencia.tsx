@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase, ImageIcon, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SakuraIcon from '../components/SakuraIcon'
-import HankoStamp from '../components/HankoStamp'
+import SectionHeader from '../components/SectionHeader'
 
 // ---------- Data shape ----------
 //
@@ -142,7 +142,7 @@ function TimelineCard({
           </p>
 
           {/* Description */}
-          <p className="mt-4 text-color-tinta/80 leading-relaxed text-sm md:text-base">
+          <p className="mt-4 text-color-tinta/80 text-fluid-body">
             {description}
           </p>
         </div>
@@ -194,54 +194,7 @@ function Experiencia() {
 
       {/* Content wrapper */}
       <div className="relative z-10 w-full flex flex-col items-center">
-        {/* Title + hanko */}
-        <div className="relative flex items-start justify-center gap-4 md:gap-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="font-brush text-color-tinta text-6xl md:text-8xl lg:text-[9rem] uppercase leading-none tracking-wide text-center"
-        >
-          {e.title}
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-          className="mt-3 md:mt-6 lg:mt-10"
-        >
-          <HankoStamp
-            text={e.stamp}
-            className="w-7 h-12 md:w-8 md:h-14 lg:w-10 lg:h-16 text-[0.6rem] md:text-xs lg:text-sm"
-          />
-        </motion.div>
-      </div>
-
-      {/* Sakura divider */}
-      <motion.div
-        initial={{ opacity: 0, scaleX: 0.6 }}
-        whileInView={{ opacity: 1, scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-        className="flex items-center gap-4 md:gap-6 mt-8"
-      >
-        <span className="h-px w-16 md:w-24 bg-color-sakura/70" />
-        <SakuraIcon className="w-4 h-4 text-color-sakura" />
-        <span className="h-px w-16 md:w-24 bg-color-sakura/70" />
-      </motion.div>
-
-      {/* Intro */}
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-2xl mt-10 text-center text-color-tinta/80 leading-relaxed bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
-      >
-        {e.intro}
-      </motion.p>
+        <SectionHeader title={e.title} stamp={e.stamp} intro={e.intro} />
 
       {/* Timeline */}
       <div className="relative w-full max-w-5xl mt-20">

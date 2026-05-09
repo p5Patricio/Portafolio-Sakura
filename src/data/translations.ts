@@ -18,7 +18,7 @@ type Dict = {
     inicio: string
     sobreMi: string
     proyectos: string
-    habilidades: string
+    herramientas: string
     experiencia: string
     contacto: string
   }
@@ -52,7 +52,7 @@ type Dict = {
     placeholderImage: string
     items: ExperienceItem[]
   }
-  habilidades: {
+  herramientas: {
     title: string
     stamp: string
     intro: string
@@ -98,7 +98,7 @@ export const translations: Record<Lang, Dict> = {
       inicio:      'Inicio',
       sobreMi:     'Sobre mí',
       proyectos:   'Proyectos',
-      habilidades: 'Habilidades',
+      herramientas: 'Herramientas',
       experiencia: 'Experiencia',
       contacto:    'Contacto',
     },
@@ -135,6 +135,7 @@ export const translations: Record<Lang, Dict> = {
       intro:
         'Una selección de proyectos en los que he trabajado, aplicando mis conocimientos para crear soluciones eficientes, escalables y centradas en las necesidades de los usuarios.',
       viewProject: 'Ver proyecto',
+      visitSite:   'Visitar sitio',
       viewAll:     'Ver todos los proyectos',
     },
     experiencia: {
@@ -160,11 +161,11 @@ export const translations: Record<Lang, Dict> = {
         },
       ],
     },
-    habilidades: {
-      title: 'Habilidades',
-      stamp: '技術',
+    herramientas: {
+      title: 'Herramientas',
+      stamp: '工具',
       intro:
-        'Las herramientas con las que construyo. Cada categoría agrupa el stack que más uso a diario, desde frontend y backend hasta IA y los agentes con los que hago pair programming.',
+        'Mi mesa de trabajo digital. Estas son las herramientas que uso día a día para transformar ideas en software real — desde interfaces con personalidad hasta agentes de IA que aceleran cada línea de código.',
     },
     galeria: {
       title: 'Galería',
@@ -210,7 +211,7 @@ export const translations: Record<Lang, Dict> = {
       inicio:      'Home',
       sobreMi:     'About',
       proyectos:   'Projects',
-      habilidades: 'Skills',
+      herramientas: 'Tools',
       experiencia: 'Experience',
       contacto:    'Contact',
     },
@@ -247,6 +248,7 @@ export const translations: Record<Lang, Dict> = {
       intro:
         'A selection of projects I have worked on, applying my knowledge to build efficient, scalable solutions centered around user needs.',
       viewProject: 'View project',
+      visitSite:   'Visit site',
       viewAll:     'View all projects',
     },
     experiencia: {
@@ -272,11 +274,11 @@ export const translations: Record<Lang, Dict> = {
         },
       ],
     },
-    habilidades: {
-      title: 'Skills',
-      stamp: '技術',
+    herramientas: {
+      title: 'Tools',
+      stamp: '工具',
       intro:
-        'The tools I build with. Each category groups the stack I use day to day — from frontend and backend to AI and the agents I pair-program with.',
+        'My digital workbench. These are the tools I use every day to turn ideas into real software — from characterful interfaces to AI agents that accelerate every line of code.',
     },
     galeria: {
       title: 'Gallery',

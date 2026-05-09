@@ -5,12 +5,12 @@ import LanguageSelector from './LanguageSelector'
 import { useLanguage } from '../context/LanguageContext'
 
 const linkDefs = [
-  { id: 'inicio',      href: '#inicio',      labelKey: 'inicio' },
-  { id: 'experiencia', href: '#experiencia', labelKey: 'experiencia' },
-  { id: 'proyectos',   href: '#proyectos',   labelKey: 'proyectos' },
-  { id: 'habilidades', href: '#habilidades', labelKey: 'habilidades' },
-  { id: 'sobre-mi',    href: '#sobre-mi',    labelKey: 'sobreMi' },
-  { id: 'contacto',    href: '#contacto',    labelKey: 'contacto' },
+  { id: 'inicio',       href: '#inicio',       labelKey: 'inicio' },
+  { id: 'experiencia',  href: '#experiencia',  labelKey: 'experiencia' },
+  { id: 'proyectos',    href: '#proyectos',    labelKey: 'proyectos' },
+  { id: 'herramientas', href: '#herramientas', labelKey: 'herramientas' },
+  { id: 'sobre-mi',     href: '#sobre-mi',     labelKey: 'sobreMi' },
+  { id: 'contacto',     href: '#contacto',     labelKey: 'contacto' },
 ] as const
 
 function useActiveSection(): string {

@@ -20,14 +20,14 @@ type NavItem = {
 
 // Order MUST mirror HomePage's section order so that the IntersectionObserver
 // active state lines up with what the user sees on screen.
-//   Inicio → Experiencia → Proyectos → Habilidades → Sobre mí → Contacto
+//   Inicio → Experiencia → Proyectos → Herramientas → Sobre mí → Contacto
 const items: NavItem[] = [
-  { id: 'inicio',      href: '#inicio',      icon: Home,       labelKey: 'inicio' },
-  { id: 'experiencia', href: '#experiencia', icon: Briefcase,  labelKey: 'experiencia' },
-  { id: 'proyectos',   href: '#proyectos',   icon: FolderGit2, labelKey: 'proyectos' },
-  { id: 'habilidades', href: '#habilidades', icon: Sparkles,   labelKey: 'habilidades' },
-  { id: 'sobre-mi',    href: '#sobre-mi',    icon: User,       labelKey: 'sobreMi' },
-  { id: 'contacto',    href: '#contacto',    icon: Mail,       labelKey: 'contacto' },
+  { id: 'inicio',       href: '#inicio',       icon: Home,       labelKey: 'inicio' },
+  { id: 'experiencia',  href: '#experiencia',  icon: Briefcase,  labelKey: 'experiencia' },
+  { id: 'proyectos',    href: '#proyectos',    icon: FolderGit2, labelKey: 'proyectos' },
+  { id: 'herramientas', href: '#herramientas', icon: Sparkles,   labelKey: 'herramientas' },
+  { id: 'sobre-mi',     href: '#sobre-mi',     icon: User,       labelKey: 'sobreMi' },
+  { id: 'contacto',     href: '#contacto',     icon: Mail,       labelKey: 'contacto' },
 ]
 
 function useActiveSection(): string {

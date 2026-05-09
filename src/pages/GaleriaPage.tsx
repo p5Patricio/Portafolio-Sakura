@@ -130,6 +130,7 @@ function GaleriaPage() {
                     repo={repo}
                     lang={lang}
                     viewProjectLabel={t.proyectos.viewProject}
+                    visitSiteLabel={t.proyectos.visitSite}
                     index={i}
                   />
                 ))}

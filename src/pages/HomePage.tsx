@@ -2,14 +2,14 @@ import Hero from '../sections/Hero'
 import SobreMi from '../sections/SobreMi'
 import Experiencia from '../sections/Experiencia'
 import Proyectos from '../sections/Proyectos'
-import Habilidades from '../sections/Habilidades'
+import Herramientas from '../sections/Herramientas'
 import Contacto from '../sections/Contacto'
 import ScrollBackground from '../components/ScrollBackground'
 
 /**
  * Single-page home — every section in the original order from the design
  * roadmap:
- *   Inicio → Sobre mí → Experiencia → Proyectos → Habilidades → Contacto
+ *   Inicio → Sobre mí → Experiencia → Proyectos → Herramientas → Contacto
  *
  * The Navbar / MobileNavbar are mounted at the App level so they persist
  * across route transitions.
@@ -20,7 +20,7 @@ function HomePage() {
       <Hero />
       <Experiencia />
       <Proyectos />
-      <Habilidades />
+      <Herramientas />
       <SobreMi />
       <Contacto />
     </ScrollBackground>
