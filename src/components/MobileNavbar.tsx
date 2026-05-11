@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Home,
   User,
   FolderGit2,
-  Sparkles,
+  Wrench,
   Briefcase,
   Mail,
   type LucideIcon,
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import useActiveSection from '../hooks/useActiveSection'
 
 type NavItem = {
   id: string
@@ -25,40 +25,15 @@ const items: NavItem[] = [
   { id: 'inicio',       href: '#inicio',       icon: Home,       labelKey: 'inicio' },
   { id: 'experiencia',  href: '#experiencia',  icon: Briefcase,  labelKey: 'experiencia' },
   { id: 'proyectos',    href: '#proyectos',    icon: FolderGit2, labelKey: 'proyectos' },
-  { id: 'herramientas', href: '#herramientas', icon: Sparkles,   labelKey: 'herramientas' },
+  { id: 'herramientas', href: '#herramientas', icon: Wrench,     labelKey: 'herramientas' },
   { id: 'sobre-mi',     href: '#sobre-mi',     icon: User,       labelKey: 'sobreMi' },
   { id: 'contacto',     href: '#contacto',     icon: Mail,       labelKey: 'contacto' },
 ]
 
-function useActiveSection(): string {
-  const [active, setActive] = useState<string>('inicio')
-
-  useEffect(() => {
-    const sections = items
-      .map((i) => document.getElementById(i.id))
-      .filter((el): el is HTMLElement => el !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible) setActive(visible.target.id)
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
-    )
-
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
-  }, [])
-
-  return active
-}
+const SECTION_IDS = items.map((i) => i.id)
 
 function MobileNavbar() {
-  const active = useActiveSection()
+  const active = useActiveSection(SECTION_IDS)
   const { t } = useLanguage()
 
   return (

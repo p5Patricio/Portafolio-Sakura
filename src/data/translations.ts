@@ -1,8 +1,6 @@
-﻿export type Lang = 'es' | 'en'
+export type Lang = 'es' | 'en'
 
 type Word = { text: string; size: 'xs' | 'sm' | 'lg' | 'xl' }
-
-type Value = { title: string; description: string }
 
 type ExperienceItem = {
   period: string
@@ -35,15 +33,17 @@ type Dict = {
     stamp: string
     para1: string
     para2: string
-    values: Value[]
+    philosophyQuote: string
+    philosophyAuthor: string
   }
   proyectos: {
     title: string
     stamp: string
     intro: string
     viewProject: string
-    /** CTA at the bottom of the home Proyectos section that links to /galeria. */
+    visitSite: string
     viewAll: string
+    guias: { title: string; href: string }[]
   }
   experiencia: {
     title: string
@@ -51,6 +51,9 @@ type Dict = {
     intro: string
     placeholderImage: string
     items: ExperienceItem[]
+    certificacionesTitle: string
+    viewCert: string
+    certificaciones: { period: string; name: string; institution: string }[]
   }
   herramientas: {
     title: string
@@ -121,13 +124,9 @@ export const translations: Record<Lang, Dict> = {
       para1:
         'Hola, soy Patricio García — mis amigos me dicen Pato. Soy ingeniero en sistemas computacionales y hoy en día estoy enfocado en el desarrollo de software. Me apasiona construir herramientas, entender cómo funcionan por dentro y simplificar flujos de trabajo complejos. Últimamente, la inteligencia artificial se ha convertido en un gran compañero de desarrollo: la veo como una herramienta extraordinaria que potencia enormemente lo que podemos crear en este ámbito.',
       para2:
-        'Fuera del código, los videojuegos son una de mis grandes pasiones, especialmente el ámbito competitivo. He alcanzado rangos respetables como Master en Overwatch y Diamante III en Rocket League.',
-      values: [
-        { title: 'Quién soy', description: 'Apasionado por la tecnología y el aprendizaje continuo.' },
-        { title: 'Misión',    description: 'Crear soluciones que generen impacto y valor real.' },
-        { title: 'Visión',    description: 'Seguir creciendo y dejando huella a través del código.' },
-        { title: 'Valores',   description: 'Compromiso, creatividad, respeto y perseverancia.' },
-      ],
+        'Fuera del código, los videojuegos son una de mis grandes pasiones, especialmente el ámbito competitivo.',
+      philosophyQuote: '«Tengo que dar un paso a la vez, solo uno a la vez.»',
+      philosophyAuthor: '— Garou',
     },
     proyectos: {
       title: 'Proyectos',
@@ -137,6 +136,13 @@ export const translations: Record<Lang, Dict> = {
       viewProject: 'Ver proyecto',
       visitSite:   'Visitar sitio',
       viewAll:     'Ver todos los proyectos',
+      guias: [
+        { title: 'Guía Dual Boot Ubuntu - Windows 11', href: 'https://guia-dual-boot-ubuntu-windows11.patodev.com/' },
+        { title: 'Guía Dual Boot Fedora 43 - Windows 11', href: 'https://guia-dual-boot-fedora43-windows11.patodev.com/' },
+        { title: 'Guía Gentle AI Kimi Code Win11', href: 'https://guia-gentle-ai-kimi-code-win11.patodev.com/' },
+        { title: 'Guía OpenClaw Windows 11', href: 'https://guia-openclaw-windows11.patodev.com/' },
+        { title: 'Guía Gentle AI Claude Code Win11', href: 'https://guia-gentle-ai-claude-code-win11.patodev.com/' },
+      ],
     },
     experiencia: {
       title: 'Experiencia',
@@ -159,6 +165,11 @@ export const translations: Record<Lang, Dict> = {
           description:
             'Desarrollo de un sistema de gestión de documentos para el área de IT que agilizó significativamente los procesos internos. Colaboración en equipo multidisciplinario y aplicación de metodologías ágiles en un entorno industrial.',
         },
+      ],
+      certificacionesTitle: 'Certificaciones',
+      viewCert: 'Ver certificado',
+      certificaciones: [
+        { period: '2026', name: 'Desarrollo con IA', institution: 'Certificación Profesional' },
       ],
     },
     herramientas: {
@@ -234,13 +245,9 @@ export const translations: Record<Lang, Dict> = {
       para1:
         "Hi, I'm Patricio García — friends call me Pato. I'm a Computer Systems Engineer currently focused on software development. I'm passionate about building tools, understanding how things work under the hood, and simplifying complex workflows. Lately, artificial intelligence has become a great development companion: I see it as an extraordinary tool that tremendously amplifies what we can create in this field.",
       para2:
-        'Outside of code, video games are one of my greatest passions, especially the competitive scene. I have reached respectable ranks such as Master in Overwatch and Diamond III in Rocket League.',
-      values: [
-        { title: 'Who I am', description: 'Passionate about technology and continuous learning.' },
-        { title: 'Mission',  description: 'Build solutions that create real impact and value.' },
-        { title: 'Vision',   description: 'Keep growing and leaving a mark through code.' },
-        { title: 'Values',   description: 'Commitment, creativity, respect and perseverance.' },
-      ],
+        'Outside of code, video games are one of my greatest passions, especially the competitive scene.',
+      philosophyQuote: '"I have to take one step at a time, just one at a time."',
+      philosophyAuthor: '— Garou',
     },
     proyectos: {
       title: 'Projects',
@@ -250,6 +257,13 @@ export const translations: Record<Lang, Dict> = {
       viewProject: 'View project',
       visitSite:   'Visit site',
       viewAll:     'View all projects',
+      guias: [
+        { title: 'Dual Boot Guide: Ubuntu - Windows 11', href: 'https://guia-dual-boot-ubuntu-windows11.patodev.com/' },
+        { title: 'Dual Boot Guide: Fedora 43 - Windows 11', href: 'https://guia-dual-boot-fedora43-windows11.patodev.com/' },
+        { title: 'Gentle AI Kimi Code Win11 Guide', href: 'https://guia-gentle-ai-kimi-code-win11.patodev.com/' },
+        { title: 'OpenClaw Windows 11 Guide', href: 'https://guia-openclaw-windows11.patodev.com/' },
+        { title: 'Gentle AI Claude Code Win11 Guide', href: 'https://guia-gentle-ai-claude-code-win11.patodev.com/' },
+      ],
     },
     experiencia: {
       title: 'Experience',
@@ -272,6 +286,11 @@ export const translations: Record<Lang, Dict> = {
           description:
             'Development of a document management system for the IT department that significantly streamlined internal processes. Collaboration within a multidisciplinary team and application of agile methodologies in an industrial environment.',
         },
+      ],
+      certificacionesTitle: 'Certifications',
+      viewCert: 'View certificate',
+      certificaciones: [
+        { period: '2026', name: 'AI-Assisted Development', institution: 'Professional Certification' },
       ],
     },
     herramientas: {

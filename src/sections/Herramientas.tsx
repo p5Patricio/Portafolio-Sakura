@@ -160,8 +160,12 @@ function MobileAccordion({
             <SakuraIcon className="w-3 h-3 text-color-sakura" />
           )}
         </div>
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
-          <ChevronDown className="w-5 h-5 text-color-tinta/60" />
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.25 }}
+          className="flex items-center justify-center w-8 h-8 rounded-lg bg-color-papel/50 backdrop-blur-sm border border-color-tinta/10"
+        >
+          <ChevronDown className="w-5 h-5 text-color-tinta" />
         </motion.div>
       </button>
 
@@ -178,9 +182,6 @@ function MobileAccordion({
             <div className="pb-6 space-y-4">
               <p className="text-sm text-color-tinta/70 italic">
                 {category.caption[lang]}
-              </p>
-              <p className="text-fluid-body text-color-tinta/85 bg-color-papel/40 backdrop-blur-sm rounded-xl px-4 py-3 border border-color-tinta/10">
-                {category.narrative[lang]}
               </p>
 
               <motion.ul
@@ -226,7 +227,7 @@ function MobileAccordion({
 function Herramientas() {
   const { t, lang } = useLanguage()
   const h = t.herramientas
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggle = (i: number) => {
     setOpenIndex((prev) => (prev === i ? null : i))
@@ -237,8 +238,7 @@ function Herramientas() {
       id="herramientas"
       className="relative z-10 px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center overflow-hidden"
     >
-      {/* Mobile-only background — desktop uses ScrollBackground */}
-      <div className="absolute inset-0 md:hidden bg-color-papel" />
+      {/* Background handled by ScrollBackground component */}
 
       <SectionHeader title={h.title} stamp={h.stamp} intro={h.intro} />
 

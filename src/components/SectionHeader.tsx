@@ -83,7 +83,7 @@ function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: introDelay, ease: 'easeOut' }}
-          className="max-w-2xl mt-10 text-center text-color-tinta/80 text-fluid-body bg-color-papel/50 backdrop-blur-sm rounded-xl px-6 py-4"
+          className="max-w-2xl mt-10 text-center text-color-tinta/80 text-fluid-body bg-color-papel/40 backdrop-blur-sm border border-color-tinta/10 rounded-xl px-6 py-4"
         >
           {intro}
         </motion.p>

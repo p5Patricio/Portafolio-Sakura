@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom'
 import { describe, it, expect } from 'vitest'
 import { screen } from '@testing-library/react'
 import { renderWithProviders } from '../../test-utils'
@@ -20,12 +21,10 @@ describe('SobreMi', () => {
     expect(screen.getByText(/videojuegos/i)).toBeInTheDocument()
   })
 
-  it('renders the four value cards', () => {
+  it('renders the philosophy homage', () => {
     renderWithProviders(<SobreMi />)
-    expect(screen.getByText('Quién soy')).toBeInTheDocument()
-    expect(screen.getByText('Misión')).toBeInTheDocument()
-    expect(screen.getByText('Visión')).toBeInTheDocument()
-    expect(screen.getByText('Valores')).toBeInTheDocument()
+    expect(screen.getByText(/Tengo que dar un paso/i)).toBeInTheDocument()
+    expect(screen.getByText(/Garou/i)).toBeInTheDocument()
   })
 
   it('renders gaming ranks', () => {

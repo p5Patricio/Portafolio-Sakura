@@ -34,7 +34,7 @@ function ProjectCard({ repo, lang, viewProjectLabel, visitSiteLabel, index = 0 }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, delay: 0.1 + index * 0.12, ease: 'easeOut' }}
-      className="group relative flex flex-col rounded-2xl bg-color-papel/70 backdrop-blur-sm border border-color-tinta/15 shadow-[0_8px_24px_-16px_rgba(26,26,26,0.35)] overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_-16px_rgba(26,26,26,0.45)]"
+      className="group relative flex flex-col rounded-2xl bg-color-papel/40 backdrop-blur-sm border border-color-tinta/10 shadow-[0_8px_24px_-16px_rgba(26,26,26,0.35)] overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_-16px_rgba(26,26,26,0.45)]"
     >
       {/* Image carousel — fills up once `repo.images` is populated */}
       <div className="relative">

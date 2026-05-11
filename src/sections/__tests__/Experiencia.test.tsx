@@ -29,7 +29,7 @@ describe('Experiencia', () => {
   it('renders timeline images', () => {
     renderWithProviders(<Experiencia />)
     const images = screen.getAllByRole('img')
-    const ugto = images.find((img) => img.getAttribute('src') === '/ugto.png')
+    const ugto = images.find((img) => img.getAttribute('src') === '/titulo.webp')
     const mazda = images.find((img) => img.getAttribute('src') === '/mazda.png')
     expect(ugto).toBeDefined()
     expect(mazda).toBeDefined()

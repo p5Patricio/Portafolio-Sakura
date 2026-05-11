@@ -1,26 +1,33 @@
 import { useRef, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 /**
- * Desktop-only continuous scroll background.
+ * Dual scroll background.
  *
- * The full vertical image covers the viewport (no side cropping).
- * As the user scrolls, background-position-y moves from top (0%)
- * to bottom (100%), revealing the full painting.
+ * Desktop (md+):
+ *   The full vertical image covers the viewport (no side cropping).
+ *   As the user scrolls, background-position-y moves from top (0%)
+ *   to bottom (100%), revealing the full painting.
  *
- * Strategy:
- *   1. Modern browsers (Chrome/Edge 115+, Safari 18.2+) use
- *      CSS scroll-driven animations — the compositor thread handles
- *      the update with zero main-thread work and zero jank.
- *   2. Older browsers fall back to a lightweight JS scroll listener
- *      that writes background-position-y directly.
+ *   Strategy:
+ *     1. Modern browsers (Chrome/Edge 115+, Safari 18.2+) use
+ *        CSS scroll-driven animations — the compositor thread handles
+ *        the update with zero main-thread work and zero jank.
+ *     2. Older browsers fall back to a lightweight JS scroll listener
+ *        that writes background-position-y directly.
+ *
+ * Mobile (< md):
+ *   Same image shown with a subtle parallax effect using framer-motion.
+ *   The image is slightly taller than the viewport and translates as
+ *   the user scrolls, creating a gentle depth illusion.
  */
 function ScrollBackground({ children }: { children: ReactNode }) {
   const bgRef = useRef<HTMLDivElement>(null)
   const [supportsScrollTimeline, setSupportsScrollTimeline] = useState(false)
 
+  // --- Desktop: CSS scroll-driven or JS fallback ---
   useEffect(() => {
-    // Detect support for CSS scroll-driven animations
     let supported = false
     try {
       supported =
@@ -32,9 +39,8 @@ function ScrollBackground({ children }: { children: ReactNode }) {
     }
     setSupportsScrollTimeline(supported)
 
-    if (supported) return // CSS drives the animation; no JS needed
+    if (supported) return
 
-    // Fallback: JS-driven updates for Safari / Firefox
     const handleScroll = () => {
       if (!bgRef.current) return
       const scrollTop = window.scrollY
@@ -44,13 +50,19 @@ function ScrollBackground({ children }: { children: ReactNode }) {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // initial position
+    handleScroll()
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // --- Mobile parallax ---
+  const { scrollYProgress } = useScroll()
+  // Shift the image by ~15% of the viewport as the user scrolls
+  const mobileY = useTransform(scrollYProgress, [0, 1], ['0%', '-15%'])
+
   return (
     <>
+      {/* Desktop scroll background */}
       <div
         ref={bgRef}
         className={`fixed inset-0 z-0 hidden md:block ${
@@ -64,6 +76,20 @@ function ScrollBackground({ children }: { children: ReactNode }) {
           backgroundRepeat: 'no-repeat',
         }}
       />
+
+      {/* Mobile parallax background */}
+      <motion.div
+        className="fixed inset-0 z-0 md:hidden"
+        style={{ y: mobileY }}
+      >
+        <img
+          src="/scroll-full.webp"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-[120vh] object-cover object-top"
+        />
+      </motion.div>
+
       {children}
     </>
   )

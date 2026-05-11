@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Logo from './Logo'
 import LanguageSelector from './LanguageSelector'
 import { useLanguage } from '../context/LanguageContext'
+import useActiveSection from '../hooks/useActiveSection'
 
 const linkDefs = [
   { id: 'inicio',       href: '#inicio',       labelKey: 'inicio' },
@@ -13,32 +13,7 @@ const linkDefs = [
   { id: 'contacto',     href: '#contacto',     labelKey: 'contacto' },
 ] as const
 
-function useActiveSection(): string {
-  const [active, setActive] = useState<string>('inicio')
-
-  useEffect(() => {
-    const sections = linkDefs
-      .map((l) => document.getElementById(l.id))
-      .filter((el): el is HTMLElement => el !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible) setActive(visible.target.id)
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
-    )
-
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
-  }, [])
-
-  return active
-}
+const SECTION_IDS = linkDefs.map((l) => l.id)
 
 // Shared glass capsule styling — keeps the three desktop nav elements visually
 // consistent (same height, blur, border, shadow). Height is fixed so the brand,
@@ -47,7 +22,7 @@ const CAPSULE =
   'h-12 rounded-full bg-color-papel/40 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)]'
 
 function Navbar() {
-  const active = useActiveSection()
+  const active = useActiveSection(SECTION_IDS)
   const { t } = useLanguage()
 
   return (
@@ -77,6 +52,23 @@ function Navbar() {
           <p className="text-[0.65rem] text-color-tinta/60 tracking-wide">
             {t.brand.subtitle}
           </p>
+        </div>
+      </motion.a>
+
+      {/* Brand (Mobile) */}
+      <motion.a
+        href="#inicio"
+        className="flex lg:hidden fixed top-6 left-6 md:top-7 md:left-8 z-40 items-center justify-center w-12 h-12 rounded-full bg-color-papel/40 backdrop-blur-xl border border-color-tinta/15 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.45)] group"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+        aria-label={t.brand.title}
+      >
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black">
+          <Logo
+            alt={t.brand.title}
+            className="h-8 w-auto transition-transform duration-300 group-hover:scale-110"
+          />
         </div>
       </motion.a>
 

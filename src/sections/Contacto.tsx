@@ -38,16 +38,24 @@ type InfoRowProps = {
 
 function InfoRow({ icon: Icon, label, value, href, onClick, actionIcon: ActionIcon }: InfoRowProps) {
   const content = (
-    <div className="flex items-center gap-5 group bg-color-papel/50 rounded-xl p-4">
-      <span className="flex-shrink-0 w-12 h-12 rounded-full bg-color-tinta flex items-center justify-center text-color-papel shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] transition-transform duration-300 group-hover:scale-[1.05]">
-        <Icon className="w-5 h-5" strokeWidth={1.8} />
-      </span>
-      <div className="flex flex-col gap-0.5 flex-1">
-        <span className="text-xs text-color-tinta font-semibold tracking-[0.3em]">
+    <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-5 group bg-color-papel/40 backdrop-blur-sm border border-color-tinta/10 rounded-xl p-3 md:p-4">
+      {/* Top Row (Mobile) / Left Side (Desktop) */}
+      <div className="flex items-center gap-2.5 md:gap-0 w-full md:w-auto">
+        <span className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-color-tinta flex items-center justify-center text-color-papel shadow-[0_4px_12px_-4px_rgba(26,26,26,0.5)] transition-transform duration-300 group-hover:scale-[1.05]">
+          <Icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1.8} />
+        </span>
+        <span className="md:hidden text-[10px] text-color-tinta font-semibold tracking-[0.15em] uppercase flex-1">
           {label}
         </span>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-color-tinta/75">{value}</span>
+      </div>
+
+      {/* Bottom Row (Mobile) / Right Side (Desktop) */}
+      <div className="flex flex-col gap-0.5 flex-1 min-w-0 w-full">
+        <span className="hidden md:block text-xs text-color-tinta font-semibold tracking-[0.3em] uppercase">
+          {label}
+        </span>
+        <div className="flex items-center gap-1.5 md:gap-2 w-full">
+          <span className="text-xs md:text-sm text-color-tinta/75 truncate">{value}</span>
           {ActionIcon && (
             <ActionIcon className="w-3.5 h-3.5 text-color-tinta/40 group-hover:text-color-sakura transition-colors shrink-0" strokeWidth={2.5} />
           )}
@@ -159,10 +167,9 @@ function Contacto() {
     <section
       ref={ref}
       id="contacto"
-      className="relative z-10 overflow-hidden pb-[40vh]"
+      className="relative z-10 overflow-hidden pb-20 md:pb-[40vh]"
     >
-      {/* Mobile-only background — desktop uses ScrollBackground */}
-      <div className="absolute inset-0 md:hidden bg-color-papel" />
+      {/* Background handled by ScrollBackground component */}
       <div className="relative z-10 px-6 py-28 md:py-32 lg:py-36 md:px-12 lg:px-24 flex flex-col items-center">
       <SectionHeader
         title={c.title}
@@ -174,13 +181,20 @@ function Contacto() {
       {/* Info + Form */}
       <div className="w-full max-w-5xl mt-14 grid grid-cols-1 lg:grid-cols-[1fr_auto_1.2fr] gap-10 lg:gap-14 items-start">
         {/* Info column */}
-        <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 md:gap-8">
           <InfoRow
             icon={Mail}
             label={c.info.email.label}
             value={c.info.email.value}
             onClick={copyEmail}
             actionIcon={copied ? Check : Copy}
+          />
+          <InfoRow
+            icon={GitHubIcon}
+            label={c.info.github.label}
+            value={c.info.github.value}
+            href={c.info.github.href}
+            actionIcon={ExternalLink}
           />
           <InfoRow
             icon={MapPin}
@@ -194,13 +208,6 @@ function Contacto() {
             label={c.info.linkedin.label}
             value={c.info.linkedin.value}
             href={c.info.linkedin.href}
-            actionIcon={ExternalLink}
-          />
-          <InfoRow
-            icon={GitHubIcon}
-            label={c.info.github.label}
-            value={c.info.github.value}
-            href={c.info.github.href}
             actionIcon={ExternalLink}
           />
         </div>
@@ -318,7 +325,7 @@ function Contacto() {
         </div>
       </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-color-papel via-color-papel/80 to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-color-papel via-color-papel/80 to-transparent z-20 pointer-events-none hidden md:block" />
     </section>
   )
 }

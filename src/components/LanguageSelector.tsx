@@ -23,10 +23,10 @@ const SIZE_STYLES: Record<Size, {
   icon: string
 }> = {
   md: {
-    container: 'p-1.5 gap-0',
-    button:    'px-5 py-2',
-    text:      'text-sm tracking-[0.3em]',
-    icon:      'w-4 h-4 mx-2',
+    container: 'p-1 gap-0',
+    button:    'px-4 py-1.5',
+    text:      'text-xs tracking-[0.25em]',
+    icon:      'w-3.5 h-3.5 mx-1.5',
   },
   lg: {
     // Force the same total height (h-12 = 48px) as the brand and nav capsules.
@@ -44,7 +44,7 @@ function LanguageSelector({
 }: Props) {
   const { lang, setLang } = useLanguage()
   const styles = SIZE_STYLES[size]
-  const showIconResolved = showIcon ?? size === 'lg'
+  const showIconResolved = showIcon ?? true
 
   const containerRef = useRef<HTMLDivElement>(null)
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])

@@ -21,20 +21,18 @@ function Hero() {
       id="inicio"
       className="relative z-10 min-h-[120vh] overflow-hidden"
     >
-      {/* Mobile background */}
-      <div className="absolute inset-0 md:hidden bg-color-papel" />
-      {/* Desktop background handled by ScrollBackground component */}
+      {/* Background handled by ScrollBackground component */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
         className="sticky top-0 h-screen z-10 flex flex-col items-center justify-center"
       >
-        <div className="relative flex items-start justify-center gap-4 md:gap-6">
+        <div className="relative flex items-center justify-center">
           <BrushText />
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.7, delay: 1.8, ease: 'easeOut' }}
-            className="mt-2 md:mt-4 lg:mt-6"
+            className="absolute -right-8 md:-right-10 lg:-right-14 top-0 md:top-2 lg:top-4"
           >
             <HankoStamp
               text={t.hero.stamp}
