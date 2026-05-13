@@ -1,6 +1,18 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+
+function supportsScrollTimeline(): boolean {
+  try {
+    return (
+      typeof CSS !== 'undefined' &&
+      typeof CSS.supports === 'function' &&
+      CSS.supports('animation-timeline', 'scroll(root)')
+    )
+  } catch {
+    return false
+  }
+}
 
 /**
  * Dual scroll background.
@@ -24,22 +36,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
  */
 function ScrollBackground({ children }: { children: ReactNode }) {
   const bgRef = useRef<HTMLDivElement>(null)
-  const [supportsScrollTimeline, setSupportsScrollTimeline] = useState(false)
+  const cssScrollTimelineSupported = supportsScrollTimeline()
 
   // --- Desktop: CSS scroll-driven or JS fallback ---
   useEffect(() => {
-    let supported = false
-    try {
-      supported =
-        typeof CSS !== 'undefined' &&
-        typeof CSS.supports === 'function' &&
-        CSS.supports('animation-timeline', 'scroll(root)')
-    } catch {
-      supported = false
-    }
-    setSupportsScrollTimeline(supported)
-
-    if (supported) return
+    if (cssScrollTimelineSupported) return
 
     const handleScroll = () => {
       if (!bgRef.current) return
@@ -53,7 +54,7 @@ function ScrollBackground({ children }: { children: ReactNode }) {
     handleScroll()
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [cssScrollTimelineSupported])
 
   // --- Mobile parallax ---
   const { scrollYProgress } = useScroll()
@@ -66,7 +67,7 @@ function ScrollBackground({ children }: { children: ReactNode }) {
       <div
         ref={bgRef}
         className={`fixed inset-0 z-0 hidden md:block ${
-          supportsScrollTimeline ? 'scroll-bg-driven' : ''
+          cssScrollTimelineSupported ? 'scroll-bg-driven' : ''
         }`}
         style={{
           backgroundImage: "url('/scroll-full.webp')",

@@ -123,7 +123,13 @@ function Contacto() {
   const { t } = useLanguage()
   const c = t.contacto
 
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    website: '',
+  })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [copied, setCopied] = useState(false)
 
@@ -154,7 +160,7 @@ function Contacto() {
 
       if (res.ok) {
         setStatus('success')
-        setForm({ name: '', email: '', subject: '', message: '' })
+        setForm({ name: '', email: '', subject: '', message: '', website: '' })
       } else {
         setStatus('error')
       }
@@ -235,6 +241,16 @@ function Contacto() {
         {/* Form column */}
         <div className="bg-color-papel/50 rounded-xl p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <input
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={handleChange('website')}
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Field id="contact-name" label={c.form.nameLabel}>
               <input
@@ -244,6 +260,9 @@ function Contacto() {
                 onChange={handleChange('name')}
                 placeholder={c.form.namePlaceholder}
                 className={inputClass}
+                autoComplete="name"
+                maxLength={120}
+                disabled={status === 'sending'}
                 required
               />
             </Field>
@@ -255,6 +274,9 @@ function Contacto() {
                 onChange={handleChange('email')}
                 placeholder={c.form.emailPlaceholder}
                 className={inputClass}
+                autoComplete="email"
+                maxLength={254}
+                disabled={status === 'sending'}
                 required
               />
             </Field>
@@ -268,6 +290,8 @@ function Contacto() {
               onChange={handleChange('subject')}
               placeholder={c.form.subjectPlaceholder}
               className={inputClass}
+              maxLength={160}
+              disabled={status === 'sending'}
               required
             />
           </Field>
@@ -281,6 +305,9 @@ function Contacto() {
                 onChange={handleChange('message')}
                 placeholder={c.form.messagePlaceholder}
                 className={`${inputClass} resize-none pr-10`}
+                minLength={10}
+                maxLength={2000}
+                disabled={status === 'sending'}
                 required
               />
               <Send
@@ -310,6 +337,7 @@ function Contacto() {
                 className="absolute -top-1 -right-2 w-4 h-4 text-color-sakura pointer-events-none drop-shadow-sm"
               />
             </div>
+            <div aria-live="polite">
             {status === 'success' && (
               <p className="text-xs text-green-700 text-center lg:text-left max-w-xs">
                 {c.form.success}
@@ -320,6 +348,7 @@ function Contacto() {
                 {c.form.error}
               </p>
             )}
+            </div>
           </div>
         </form>
         </div>

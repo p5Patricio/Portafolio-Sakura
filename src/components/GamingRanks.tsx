@@ -12,10 +12,13 @@ function GamingRanks() {
       {/* Overwatch — Master */}
       <div className="flex flex-col items-center gap-2">
         <img
-          src="/ranks/overwatch.png"
+          src="/ranks/overwatch.webp"
           alt="Overwatch — Master"
           className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-md"
           loading="lazy"
+          decoding="async"
+          width={96}
+          height={96}
         />
         <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-color-sakura font-semibold">
           Overwatch
@@ -28,10 +31,13 @@ function GamingRanks() {
       {/* Rocket League — Diamond III */}
       <div className="flex flex-col items-center gap-2">
         <img
-          src="/ranks/rocket-league.png"
+          src="/ranks/rocket-league.webp"
           alt="Rocket League — Diamond III"
           className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-md"
           loading="lazy"
+          decoding="async"
+          width={96}
+          height={96}
         />
         <span className="text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-color-sakura font-semibold">
           Rocket League

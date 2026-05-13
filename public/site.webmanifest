@@ -1,0 +1,17 @@
+{
+  "name": "Patricio García | Ingeniero de Software",
+  "short_name": "Patricio García",
+  "description": "Portafolio de Patricio García, Ingeniero de Software especializado en desarrollo web.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4eee0",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "/LogoDark.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

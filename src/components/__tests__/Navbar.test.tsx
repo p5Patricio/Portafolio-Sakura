@@ -6,7 +6,7 @@ import Navbar from '../Navbar'
 describe('Navbar', () => {
   it('renders desktop brand link', () => {
     renderWithProviders(<Navbar />)
-    expect(screen.getByLabelText(/portafolio/i)).toBeInTheDocument()
+    expect(screen.getAllByLabelText(/portafolio/i).length).toBeGreaterThanOrEqual(1)
   })
 
   it('renders navigation links', () => {

@@ -21,7 +21,15 @@ function SobreMi() {
           {/* Logo container */}
           <div className="w-40 h-40 md:w-48 md:h-48 shrink-0 relative flex items-center justify-center p-6 bg-color-papel/80 backdrop-blur-sm rounded-full border border-color-tinta/15 shadow-[0_8px_24px_-12px_rgba(26,26,26,0.3)]">
             <div className="absolute inset-2 border border-color-tinta/10 rounded-full pointer-events-none z-10" />
-            <img src="/LogoDark.png" alt="Logo de Patricio García" className="w-full h-full object-contain relative z-20" />
+            <img
+              src="/LogoDark.png"
+              alt="Logo de Patricio García"
+              className="w-full h-full object-contain relative z-20"
+              loading="lazy"
+              decoding="async"
+              width={192}
+              height={192}
+            />
           </div>
 
           {/* Text container */}
@@ -41,6 +49,10 @@ function SobreMi() {
                 src="/garou-2.jpg"
                 alt="Garou"
                 className="w-full h-full object-cover object-top mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500 scale-110 group-hover:scale-125"
+                loading="lazy"
+                decoding="async"
+                width={112}
+                height={112}
               />
             </div>
             {/* Mobile Quote Icon (floating right) */}

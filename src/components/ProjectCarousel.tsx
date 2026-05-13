@@ -68,6 +68,8 @@ function ProjectCarousel({ images, title, autoPlayMs = 5000 }: Props) {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
           decoding="async"
+          width={900}
+          height={506}
         />
       </AnimatePresence>
 

@@ -69,7 +69,7 @@ export const REPOS: Repo[] = [
     isPrivate: true,
     featured: false,
     illustration: 'mountain',
-    images: ['/projects/demox.webp'],
+    images: ['/projects/thumbs/demox.webp'],
   },
   {
     id: 'windows-assistant',
@@ -89,7 +89,7 @@ export const REPOS: Repo[] = [
     isPrivate: true,
     featured: false,
     illustration: 'torii',
-    images: ['/projects/windows-assistant.webp'],
+    images: ['/projects/thumbs/windows-assistant.webp'],
   },
   {
     id: 'rey-asesino',
@@ -111,7 +111,7 @@ export const REPOS: Repo[] = [
     isPrivate: true,
     featured: true,
     illustration: 'pagoda',
-    images: ['/projects/rey-asesino.webp'],
+    images: ['/projects/thumbs/rey-asesino.webp'],
   },
   {
     id: 'wisprlocal',
@@ -130,7 +130,7 @@ export const REPOS: Repo[] = [
     year: 2026,
     isPrivate: false,
     featured: true,
-    images: ['/projects/wisprlocal.webp'],
+    images: ['/projects/thumbs/wisprlocal.webp'],
   },
   {
     id: 'infinite-tic-tac-toe',
@@ -149,7 +149,7 @@ export const REPOS: Repo[] = [
     year: 2026,
     isPrivate: false,
     featured: true,
-    images: ['/projects/infinite-tic-tac-toe.webp'],
+    images: ['/projects/thumbs/infinite-tic-tac-toe.webp'],
   },
   {
     id: 'voiceagenda',
@@ -169,7 +169,7 @@ export const REPOS: Repo[] = [
     year: 2026,
     isPrivate: true,
     featured: false,
-    images: ['/projects/voiceagenda.webp'],
+    images: ['/projects/thumbs/voiceagenda.webp'],
   },
   {
     id: 'fittrack-pro',
@@ -189,7 +189,7 @@ export const REPOS: Repo[] = [
     year: 2026,
     isPrivate: false,
     featured: false,
-    images: ['/projects/fittrack-pro.webp'],
+    images: ['/projects/thumbs/fittrack-pro.webp'],
   },
   // ---- 2025 ----
   {
@@ -209,7 +209,7 @@ export const REPOS: Repo[] = [
     year: 2025,
     isPrivate: false,
     featured: false,
-    images: ['/projects/clasificador-nba.webp'],
+    images: ['/projects/thumbs/clasificador-nba.webp'],
   },
   {
     id: 'esteganobot',
@@ -229,7 +229,7 @@ export const REPOS: Repo[] = [
     year: 2025,
     isPrivate: true,
     featured: false,
-    images: ['/projects/esteganobot.webp'],
+    images: ['/projects/thumbs/esteganobot.webp'],
   },
   {
     id: 'art-classifier',
@@ -248,7 +248,7 @@ export const REPOS: Repo[] = [
     year: 2024,
     isPrivate: false,
     featured: false,
-    images: ['/projects/art-classifier.webp'],
+    images: ['/projects/thumbs/art-classifier.webp'],
   },
 ]
 

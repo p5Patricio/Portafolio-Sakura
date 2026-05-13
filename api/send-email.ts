@@ -4,6 +4,7 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? 'pa.garciaperezvela@ugto.mx'
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'
+const SITE_URL = process.env.SITE_URL ?? 'https://patodev.com'
 
 /** Simple in-memory rate limiter (resets on cold start). */
 const ipLimits = new Map<string, { count: number; resetAt: number }>()
@@ -25,12 +26,32 @@ function sanitize(str: string): string {
   return str.trim().slice(0, 2000)
 }
 
+function setCors(req: VercelRequest, res: VercelResponse) {
+  const origin = req.headers.origin
+  const allowedOrigins = new Set([
+    SITE_URL,
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    'http://localhost:5173',
+  ])
+
+  if (origin && allowedOrigins.has(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+    res.setHeader('Vary', 'Origin')
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+}
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  setCors(req, res)
+
   // CORS preflight
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
     return res.status(204).end()
   }
 
@@ -38,17 +59,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  res.setHeader('Access-Control-Allow-Origin', '*')
-
   const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ?? 'unknown'
   if (isRateLimited(ip)) {
     return res.status(429).json({ error: 'Too many requests. Please try again later.' })
   }
 
-  const { name, email, subject, message } = req.body ?? {}
+  const { name, email, subject, message, website } = req.body ?? {}
 
-  if (!name || !email || !subject || !message) {
+  // Honeypot anti-spam field: real users never fill it.
+  if (website) {
+    return res.status(200).json({ success: true })
+  }
+
+  if (
+    !isNonEmptyString(name) ||
+    !isNonEmptyString(email) ||
+    !isNonEmptyString(subject) ||
+    !isNonEmptyString(message)
+  ) {
     return res.status(400).json({ error: 'All fields are required.' })
+  }
+
+  if (name.length > 120 || email.length > 254 || subject.length > 160 || message.length > 2000) {
+    return res.status(400).json({ error: 'One or more fields are too long.' })
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
